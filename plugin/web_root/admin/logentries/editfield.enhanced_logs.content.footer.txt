@@ -1,0 +1,15 @@
+<script type="text/template" id="adminHeaderTemplate">
+    <tr bgcolor="#f6f6f6">
+        <td class="bold" colspan="2" style="text-align: center">Admin Portal</td>
+    </tr>
+</script>
+
+<script>
+    (function ()
+    {
+        let content = $j('#adminHeaderTemplate').html();
+        let target = $j('.box-round table tbody');
+
+        target.prepend(content);
+    })();
+</script>
