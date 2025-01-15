@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://plugin.powerschool.pearson.com"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		description="<<DESCRIPTION>>"
-		name="<<NAME>>"
-		version="<<VERSION NUMBER>>"
+		description="Enhances student log entry and management for both teachers and admins"
+		name="TCAPS Enhanced Student Logs"
+		version="25.1.0.0"
 		xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
 	<publisher name="Traverse City Area Public Schools">
 		<contact email="schaubda@tcaps.net"/>
