@@ -1,6 +1,7 @@
 <script type="text/template" id="teacherOptionsTemplate">
     <h2>Teachers Portal</h2>
-    <table border="0" cellpadding="0" cellspacing="0" class="linkDescList">
+    <!--TODO: Add hidden fields to store the current values of the fields-->
+    <table id="teacherFieldOptions" border="0" cellpadding="0" cellspacing="0" class="linkDescList">
         <thead>
         <tr>
             <th>Option</th>
@@ -68,6 +69,46 @@
 </script>
 
 <script>
+    function showOnPortalChange()
+    {
+        if ($j('#teacherShowOnPortal').is(':checked'))
+        {
+            if ($j('#teacherMatchAdmin').is(':checked'))
+            {
+                $j('#teacherMatchAdmin').removeAttr('disabled');
+            }
+            else
+            {
+                $j('#teacherFieldOptions').find('input, select, textarea').removeAttr('disabled');
+            }
+        }
+        else
+        {
+            $j('#teacherFieldOptions').find('input, select, textarea')
+                                      .not('#teacherShowOnPortal')
+                                      .attr('disabled', 'disabled');
+        }
+    }
+
+    function matchAdminChange()
+    {
+        if ($j('#teacherMatchAdmin').is(':checked'))
+        {
+            $j('#teacherFieldOptions').find('input, select, textarea')
+                                      .not('#teacherShowOnPortal, #teacherMatchAdmin')
+                                      .attr('disabled', 'disabled');
+
+            //TODO: Store the current values of the fields
+            //TODO: Set field values to match the admin portal
+        }
+        else
+        {
+            $j('#teacherFieldOptions').find('input, select, textarea')
+                                      .not('#teacherShowOnPortal, #teacherMatchAdmin')
+                                      .removeAttr('disabled');
+        }
+    }
+
     (function ()
     {
         let content = $j('#teacherOptionsTemplate').html();
@@ -75,5 +116,8 @@
 
         target.before('<h2>Admin Portal</h2>');
         target.after(content);
+
+        $j('#teacherShowOnPortal').on('change', showOnPortalChange);
+        $j('#teacherMatchAdmin').on('change', matchAdminChange);
     })();
 </script>

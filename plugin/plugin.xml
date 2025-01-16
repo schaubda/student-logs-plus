@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://plugin.powerschool.pearson.com"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		description="Enhances student log entry and management for both teachers and admins"
-		name="Enhanced Student Logs"
-		version="25.1.0.0"
-		xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
-	<publisher name="Dave Schaub">
-		<contact email="schaubda@tcaps.net"/>
-	</publisher>
-	<autoinstall required="true">
-		<autoenable required="true"/>
-		<autoredeploy/>
-	</autoinstall>
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        description="Enhances student log entry and management for both teachers and admins"
+        name="Enhanced Student Logs"
+        version="25.1.0.1"
+        xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
+    <publisher name="Dave Schaub">
+        <contact email="schaubda@tcaps.net"/>
+    </publisher>
+    <autoinstall required="true">
+        <autoenable required="true"/>
+        <autoredeploy/>
+    </autoinstall>
 </plugin>
