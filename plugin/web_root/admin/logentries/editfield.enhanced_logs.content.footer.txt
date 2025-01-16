@@ -11,27 +11,35 @@
         <tr>
             <td class="bold">Show on Teacher Portal</td>
             <td>
-                <input id="teacherShowOnPortal" type="checkbox" value="">
+                <input id="teacherShowOnPortal"
+                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]showonteacherportal"
+                       type="checkbox" value="">
                 <input id="backedUp" type="hidden" value="0">
             </td>
         </tr>
         <tr>
             <td class="bold">Match Admin Portal Formatting</td>
             <td>
-                <input id="teacherMatchAdmin" type="checkbox" value="">
+                <input id="teacherMatchAdmin"
+                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]matchadminportal"
+                       type="checkbox" value="">
             </td>
         </tr>
         <tr>
             <td class="bold">Field Label</td>
             <td>
-                <input id="teacherFieldLabel" type="text" value="" size="40">
+                <input id="teacherFieldLabel"
+                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]label"
+                       type="text" value="" size="40">
                 <input id="backupFieldLabel" type="hidden">
             </td>
         </tr>
         <tr>
             <td class="bold">Input Type</td>
             <td>
-                <select id="teacherInputType" class="psTextWidget" maxlength="40">
+                <select id="teacherInputType"
+                        name="[Gen.U_DS_TEACHER_LOG_FIELDS]inputtype"
+                        class="psTextWidget" maxlength="40">
                     <option value="text">Entry field</option>
                     <option value="static">Static field</option>
                     <option value="checkbox">Checkbox</option>
@@ -45,7 +53,9 @@
         <tr>
             <td class="bold">Width<br>(applies only to 'entry field' and 'entry box' types)</td>
             <td>
-                <input id="teacherInputWidth" type="text" value="" size="2"
+                <input id="teacherInputWidth"
+                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]width"
+                       type="text" value="" size="2"
                        data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli&quot;}"
                        class="psNumWidget" data-minvalue="-9223372036854775808"
                        data-maxvalue="9223372036854775807" data-isinteger="true">
@@ -56,7 +66,9 @@
         <tr>
             <td class="bold">Height<br>(applies only to 'entry box' type)</td>
             <td>
-                <input id="teacherInputHeight" type="text" value="" size="2"
+                <input id="teacherInputHeight"
+                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]height"
+                       type="text" value="" size="2"
                        data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli2&quot;}"
                        class="psNumWidget" data-minvalue="-9223372036854775808"
                        data-maxvalue="9223372036854775807" data-isinteger="true">
@@ -67,7 +79,9 @@
         <tr>
             <td class="bold">Data for Popup or Radio buttons<br>(press return after each entry)</td>
             <td>
-                <textarea id="teacherListEntries" rows="11" cols="40"></textarea>
+                <textarea id="teacherListEntries"
+                          name="[Gen.U_DS_TEACHER_LOG_FIELDS]data"
+                          rows="11" cols="40"></textarea>
                 <input id="backupListEntries" type="hidden">
             </td>
         </tr>
@@ -76,7 +90,7 @@
 </script>
 
 <script>
-    function backupAndClearFieldVals()
+    function backupFieldVals()
     {
         if ($j('#backedUp').val() === '0')
         {
@@ -88,12 +102,6 @@
 
             $j('#backedUp').val('1');
         }
-
-        $j('#teacherFieldLabel').val('');
-        $j('#teacherInputType').val('text');
-        $j('#teacherInputWidth').val('');
-        $j('#teacherInputHeight').val('');
-        $j('#teacherListEntries').val('');
     }
 
     function restoreFieldVals()
@@ -103,7 +111,15 @@
         $j('#teacherInputWidth').val($j('#backupInputWidth').val());
         $j('#teacherInputHeight').val($j('#backupInputHeight').val());
         $j('#teacherListEntries').val($j('#backupListEntries').val());
+    }
 
+    function clearFieldVals()
+    {
+        $j('#teacherFieldLabel').val('');
+        $j('#teacherInputType').val('text');
+        $j('#teacherInputWidth').val('');
+        $j('#teacherInputHeight').val('');
+        $j('#teacherListEntries').val('');
     }
 
     function fieldChange()
@@ -132,7 +148,8 @@
                                       .not('#teacherShowOnPortal, :hidden')
                                       .attr('disabled', 'disabled');
 
-            backupAndClearFieldVals();
+            backupFieldVals();
+            clearFieldVals();
         }
     }
 
@@ -144,9 +161,10 @@
                                       .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
                                       .attr('disabled', 'disabled');
 
-            backupAndClearFieldVals();
+            backupFieldVals();
+            clearFieldVals();
         }
-        else
+        else if ($j('#teacherShowOnPortal').is(':checked'))
         {
             $j('#teacherFieldOptions').find('input, select, textarea')
                                       .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
@@ -163,6 +181,10 @@
 
         target.before('<h2>Admin Portal</h2>');
         target.after(content);
+
+        backupFieldVals();
+        showOnPortalChange();
+        matchAdminChange();
 
         $j('#teacherShowOnPortal').on('change', showOnPortalChange);
         $j('#teacherMatchAdmin').on('change', matchAdminChange);
