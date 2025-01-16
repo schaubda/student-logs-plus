@@ -1,6 +1,5 @@
 <script type="text/template" id="teacherOptionsTemplate">
-    <h2>Teachers Portal</h2>
-    <!--TODO: Add hidden fields to store the current values of the fields-->
+    <h2>Teacher Portal</h2>
     <table id="teacherFieldOptions" border="0" cellpadding="0" cellspacing="0" class="linkDescList">
         <thead>
         <tr>
@@ -13,6 +12,7 @@
             <td class="bold">Show on Teacher Portal</td>
             <td>
                 <input id="teacherShowOnPortal" type="checkbox" value="">
+                <input id="backedUp" type="hidden" value="0">
             </td>
         </tr>
         <tr>
@@ -23,7 +23,10 @@
         </tr>
         <tr>
             <td class="bold">Field Label</td>
-            <td><input id="teacherFieldLabel" type="text" value="" size="40"></td>
+            <td>
+                <input id="teacherFieldLabel" type="text" value="" size="40">
+                <input id="backupFieldLabel" type="hidden">
+            </td>
         </tr>
         <tr>
             <td class="bold">Input Type</td>
@@ -36,6 +39,7 @@
                     <option value="radio">Radio button</option>
                     <option value="textarea">Entry box</option>
                 </select>
+                <input id="backupInputType" type="hidden">
             </td>
         </tr>
         <tr>
@@ -46,6 +50,7 @@
                        class="psNumWidget" data-minvalue="-9223372036854775808"
                        data-maxvalue="9223372036854775807" data-isinteger="true">
                 &nbsp;(width in characters)
+                <input id="backupInputWidth" type="hidden">
             </td>
         </tr>
         <tr>
@@ -56,12 +61,14 @@
                        class="psNumWidget" data-minvalue="-9223372036854775808"
                        data-maxvalue="9223372036854775807" data-isinteger="true">
                 &nbsp;(height in lines)
+                <input id="backupInputHeight" type="hidden">
             </td>
         </tr>
         <tr>
             <td class="bold">Data for Popup or Radio buttons<br>(press return after each entry)</td>
             <td>
                 <textarea id="teacherListEntries" rows="11" cols="40"></textarea>
+                <input id="backupListEntries" type="hidden">
             </td>
         </tr>
         </tbody>
@@ -69,6 +76,41 @@
 </script>
 
 <script>
+    function backupAndClearFieldVals()
+    {
+        if ($j('#backedUp').val() === '0')
+        {
+            $j('#backupFieldLabel').val($j('#teacherFieldLabel').val());
+            $j('#backupInputType').val($j('#teacherInputType').val());
+            $j('#backupInputWidth').val($j('#teacherInputWidth').val());
+            $j('#backupInputHeight').val($j('#teacherInputHeight').val());
+            $j('#backupListEntries').val($j('#teacherListEntries').val());
+
+            $j('#backedUp').val('1');
+        }
+
+        $j('#teacherFieldLabel').val('');
+        $j('#teacherInputType').val('text');
+        $j('#teacherInputWidth').val('');
+        $j('#teacherInputHeight').val('');
+        $j('#teacherListEntries').val('');
+    }
+
+    function restoreFieldVals()
+    {
+        $j('#teacherFieldLabel').val($j('#backupFieldLabel').val());
+        $j('#teacherInputType').val($j('#backupInputType').val());
+        $j('#teacherInputWidth').val($j('#backupInputWidth').val());
+        $j('#teacherInputHeight').val($j('#backupInputHeight').val());
+        $j('#teacherListEntries').val($j('#backupListEntries').val());
+
+    }
+
+    function fieldChange()
+    {
+        $j('#backedUp').val('0');
+    }
+
     function showOnPortalChange()
     {
         if ($j('#teacherShowOnPortal').is(':checked'))
@@ -80,13 +122,17 @@
             else
             {
                 $j('#teacherFieldOptions').find('input, select, textarea').removeAttr('disabled');
+
+                restoreFieldVals();
             }
         }
         else
         {
             $j('#teacherFieldOptions').find('input, select, textarea')
-                                      .not('#teacherShowOnPortal')
+                                      .not('#teacherShowOnPortal, :hidden')
                                       .attr('disabled', 'disabled');
+
+            backupAndClearFieldVals();
         }
     }
 
@@ -95,17 +141,18 @@
         if ($j('#teacherMatchAdmin').is(':checked'))
         {
             $j('#teacherFieldOptions').find('input, select, textarea')
-                                      .not('#teacherShowOnPortal, #teacherMatchAdmin')
+                                      .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
                                       .attr('disabled', 'disabled');
 
-            //TODO: Store the current values of the fields
-            //TODO: Set field values to match the admin portal
+            backupAndClearFieldVals();
         }
         else
         {
             $j('#teacherFieldOptions').find('input, select, textarea')
-                                      .not('#teacherShowOnPortal, #teacherMatchAdmin')
+                                      .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
                                       .removeAttr('disabled');
+
+            restoreFieldVals();
         }
     }
 
@@ -119,5 +166,8 @@
 
         $j('#teacherShowOnPortal').on('change', showOnPortalChange);
         $j('#teacherMatchAdmin').on('change', matchAdminChange);
+        $j('#teacherFieldOptions').find('input, select, textarea')
+                                  .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
+                                  .on('change', fieldChange);
     })();
 </script>
