@@ -1,6 +1,8 @@
 <script type="text/template" id="teacherOptionsTemplate">
     <h2>Teacher Portal</h2>
-    <table id="teacherFieldOptions" border="0" cellpadding="0" cellspacing="0" class="linkDescList">
+    <h3>Formatting</h3>
+    <table id="teacherFormattingOptions" border="0" cellpadding="0" cellspacing="0"
+           class="linkDescList">
         <thead>
         <tr>
             <th>Option</th>
@@ -12,34 +14,34 @@
             <td class="bold">Show on Teacher Portal</td>
             <td>
                 <input id="teacherShowOnPortal"
-                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]showonteacherportal"
-                       type="checkbox" value="">
-                <input id="backedUp" type="hidden" value="0">
+                       name="[Gen.U_DS_LOG_TEACHER_FIELDS]showonportal"
+                       type="checkbox" value="" class="radioSlider">
             </td>
         </tr>
         <tr>
             <td class="bold">Match Admin Portal Formatting</td>
             <td>
-                <input id="teacherMatchAdmin"
-                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]matchadminportal"
-                       type="checkbox" value="">
+                <input id="teacherMatchAdminFormatting"
+                       name="[Gen.U_DS_LOG_TEACHER_FIELDS]matchadminformatting"
+                       type="checkbox" value="" class="radioSlider">
+                <input id="teacherFormattingBackedUp" type="hidden" value="0">
             </td>
         </tr>
         <tr>
             <td class="bold">Field Label</td>
             <td>
                 <input id="teacherFieldLabel"
-                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]label"
+                       name="[Gen.U_DS_LOG_TEACHER_FIELDS]inputlabel"
                        type="text" value="" size="40">
-                <input id="backupFieldLabel" type="hidden">
+                <input id="backupInputLabel" type="hidden">
             </td>
         </tr>
         <tr>
             <td class="bold">Input Type</td>
             <td>
                 <select id="teacherInputType"
-                        name="[Gen.U_DS_TEACHER_LOG_FIELDS]inputtype"
-                        class="psTextWidget" maxlength="40">
+                        name="[Gen.U_DS_LOG_TEACHER_FIELDS]inputtype"
+                        class="psTextWidget">
                     <option value="text">Entry field</option>
                     <option value="static">Static field</option>
                     <option value="checkbox">Checkbox</option>
@@ -54,7 +56,7 @@
             <td class="bold">Width<br>(applies only to 'entry field' and 'entry box' types)</td>
             <td>
                 <input id="teacherInputWidth"
-                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]width"
+                       name="[Gen.U_DS_LOG_TEACHER_FIELDS]width"
                        type="text" value="" size="2"
                        data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli&quot;}"
                        class="psNumWidget" data-minvalue="-9223372036854775808"
@@ -67,7 +69,7 @@
             <td class="bold">Height<br>(applies only to 'entry box' type)</td>
             <td>
                 <input id="teacherInputHeight"
-                       name="[Gen.U_DS_TEACHER_LOG_FIELDS]height"
+                       name="[Gen.U_DS_LOG_TEACHER_FIELDS]height"
                        type="text" value="" size="2"
                        data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli2&quot;}"
                        class="psNumWidget" data-minvalue="-9223372036854775808"
@@ -80,40 +82,99 @@
             <td class="bold">Data for Popup or Radio buttons<br>(press return after each entry)</td>
             <td>
                 <textarea id="teacherListEntries"
-                          name="[Gen.U_DS_TEACHER_LOG_FIELDS]data"
+                          name="[Gen.U_DS_LOG_TEACHER_FIELDS]data"
                           rows="11" cols="40"></textarea>
-                <input id="backupListEntries" type="hidden">
+                <input id="backupData" type="hidden">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Default Value</h3>
+    <table id="teacherDefaultOptions" border="0" cellpadding="0" cellspacing="0"
+           class="linkDescList">
+        <thead>
+        <tr>
+            <th>Option</th>
+            <th style="width: 50%">Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="bold">Match Admin Portal Default Value</td>
+            <td>
+                <input id="teacherMatchAdminDefault"
+                       name="[Gen.U_DS_LOG_TEACHER_FIELDS]matchadmindefault"
+                       type="checkbox" value="" class="radioSlider">
+                <input id="teacherDefaultBackedUp" type="hidden" value="0">
+            </td>
+        </tr>
+        <tr>
+            <td class="bold">Default Value Type</td>
+            <td>
+                <select id="teacherDefaultType"
+                        name="[Gen.U_DS_LOG_TEACHER_FIELDS]defaulttype"
+                        class="psTextWidget">
+                    <option value="none">No default</option>
+                    <option value="static">Static value</option>
+                    <option value="dynamic">Dynamic value</option>
+                </select>
+                <input id="backupTeacherDefaultType" type="hidden">
+            </td>
+        </tr>
+        <tr>
+            <td class="bold">Default Value</td>
+            <td>
+                <input id="backupTeacherStaticDefaultValue" type="hidden">
+                <input id="backupTeacherDynamicDefaultValue" type="hidden">
             </td>
         </tr>
         </tbody>
     </table>
 </script>
 
+<script type="text/template" id="teacherStaticDefaultTemplate">
+    <input id="teacherStaticDefaultValue"
+           name="[Gen.U_DS_LOG_TEACHER_FIELDS]defaultvalue"
+           type="text" value="" size="40" maxlength="100">
+</script>
+
+<script type="text/template" id="teacherDynamicDefaultTemplate">
+    <select id="teacherDynamicDefaultValue"
+            name="[Gen.U_DS_LOG_TEACHER_FIELDS]defaultvalue"
+            class="psTextWidget">
+        <option value="placeholder1">Placeholder 1</option>
+        <option value="placeholder2">Placeholder 2</option>
+        <option value="placeholder3">Placeholder 3</option>
+        <option value="placeholder4">Placeholder 4</option>
+        <option value="placeholder5">Placeholder 5</option>
+    </select>
+</script>
+
 <script>
-    function backupFieldVals()
+    function backupTeacherFormattingVals()
     {
-        if ($j('#backedUp').val() === '0')
+        if ($j('#teacherFormattingBackedUp').val() === '0')
         {
-            $j('#backupFieldLabel').val($j('#teacherFieldLabel').val());
+            $j('#backupInputLabel').val($j('#teacherFieldLabel').val());
             $j('#backupInputType').val($j('#teacherInputType').val());
             $j('#backupInputWidth').val($j('#teacherInputWidth').val());
             $j('#backupInputHeight').val($j('#teacherInputHeight').val());
-            $j('#backupListEntries').val($j('#teacherListEntries').val());
+            $j('#backupData').val($j('#teacherListEntries').val());
 
-            $j('#backedUp').val('1');
+            $j('#teacherFormattingBackedUp').val('1');
         }
     }
 
-    function restoreFieldVals()
+    function restoreTeacherFormattingVals()
     {
-        $j('#teacherFieldLabel').val($j('#backupFieldLabel').val());
+        $j('#teacherFieldLabel').val($j('#backupInputLabel').val());
         $j('#teacherInputType').val($j('#backupInputType').val());
         $j('#teacherInputWidth').val($j('#backupInputWidth').val());
         $j('#teacherInputHeight').val($j('#backupInputHeight').val());
-        $j('#teacherListEntries').val($j('#backupListEntries').val());
+        $j('#teacherListEntries').val($j('#backupData').val());
     }
 
-    function clearFieldVals()
+    function clearTeacherFormattingVals()
     {
         $j('#teacherFieldLabel').val('');
         $j('#teacherInputType').val('text');
@@ -122,56 +183,195 @@
         $j('#teacherListEntries').val('');
     }
 
-    function fieldChange()
+    function backupTeacherDefaultVals()
     {
-        $j('#backedUp').val('0');
+        if ($j('#teacherDefaultBackedUp').val() === '0')
+        {
+            $j('#backupTeacherDefaultType').val($j('#teacherDefaultType').val());
+            $j('#backupTeacherStaticDefaultValue').val($j('#teacherStaticDefaultValue').val());
+            $j('#backupTeacherDynamicDefaultValue').val($j('#teacherDynamicDefaultValue').val());
+
+            $j('#teacherDefaultBackedUp').val('1');
+        }
+    }
+
+    function restoreTeacherDefaultVals()
+    {
+        $j('#teacherDefaultType').val($j('#backupTeacherDefaultType').val());
+        swapTeacherDefaultType();
+        $j('#teacherStaticDefaultValue').val($j('#backupTeacherStaticDefaultValue').val());
+        $j('#teacherDynamicDefaultValue').val($j('#backupTeacherDynamicDefaultValue').val());
+    }
+
+    function clearTeacherDefaultVals()
+    {
+        $j('#teacherDefaultType').val('none');
+        swapTeacherDefaultType();
+    }
+
+    function enableFields(container_selector, fields_selector, exclude_selector = '')
+    {
+        if (exclude_selector !== '')
+        {
+            $j(container_selector).find(fields_selector)
+                                  .not(exclude_selector)
+                                  .removeAttr('disabled');
+        }
+        else
+        {
+            $j(container_selector).find(fields_selector)
+                                  .removeAttr('disabled');
+        }
+    }
+
+    function disableFields(container_selector, fields_selector, exclude_selector = '')
+    {
+        if (exclude_selector !== '')
+        {
+            $j(container_selector).find(fields_selector)
+                                  .not(exclude_selector)
+                                  .attr('disabled', 'disabled');
+        }
+        else
+        {
+            $j(container_selector).find(fields_selector)
+                                  .attr('disabled', 'disabled');
+        }
+    }
+
+    function setupEventHandlers()
+    {
+        $j('#teacherShowOnPortal').on('change', showOnPortalChange);
+
+        $j('#teacherMatchAdminFormatting').on('change', matchAdminFormattingChange);
+        $j('#teacherFormattingOptions').find('input, select, textarea')
+                                       .not('#teacherShowOnPortal, ' +
+                                            '#teacherMatchAdminFormatting, :hidden')
+                                       .on('change', teacherFormattingFieldChange);
+
+        $j('#teacherMatchAdminDefault').on('change', matchAdminDefaultChange);
+        $j('#teacherDefaultType').on('change', teacherDefaultTypeChange);
+        $j('#teacherStaticDefaultValue').on('change', teacherStaticDefaultChange);
+        $j('#teacherDynamicDefaultValue').on('change', teacherDynamicDefaultChange);
     }
 
     function showOnPortalChange()
     {
         if ($j('#teacherShowOnPortal').is(':checked'))
         {
-            if ($j('#teacherMatchAdmin').is(':checked'))
+            if ($j('#teacherMatchAdminFormatting').is(':checked'))
             {
-                $j('#teacherMatchAdmin').removeAttr('disabled');
+                $j('#teacherMatchAdminFormatting').removeAttr('disabled');
             }
             else
             {
-                $j('#teacherFieldOptions').find('input, select, textarea').removeAttr('disabled');
+                enableFields('#teacherFormattingOptions', 'input, select, textarea');
+                restoreTeacherFormattingVals();
+            }
 
-                restoreFieldVals();
+            if ($j('#teacherMatchAdminDefault').is(':checked'))
+            {
+                $j('#teacherMatchAdminDefault').removeAttr('disabled');
+            }
+            else
+            {
+                enableFields('#teacherDefaultOptions', 'input, select, textarea');
+                restoreTeacherDefaultVals();
             }
         }
         else
         {
-            $j('#teacherFieldOptions').find('input, select, textarea')
-                                      .not('#teacherShowOnPortal, :hidden')
-                                      .attr('disabled', 'disabled');
+            disableFields('#teacherFormattingOptions', 'input, select, textarea',
+                          '#teacherShowOnPortal, :hidden');
+            disableFields('#teacherDefaultOptions', 'input, select, textarea', ':hidden');
 
-            backupFieldVals();
-            clearFieldVals();
+            backupTeacherFormattingVals();
+            clearTeacherFormattingVals();
+
+            // backupTeacherDefaultVals();
+            clearTeacherDefaultVals();
         }
     }
 
-    function matchAdminChange()
+    function matchAdminFormattingChange()
     {
-        if ($j('#teacherMatchAdmin').is(':checked'))
+        if ($j('#teacherMatchAdminFormatting').is(':checked'))
         {
-            $j('#teacherFieldOptions').find('input, select, textarea')
-                                      .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
-                                      .attr('disabled', 'disabled');
-
-            backupFieldVals();
-            clearFieldVals();
+            disableFields('#teacherFormattingOptions', 'input, select, textarea',
+                          '#teacherShowOnPortal, #teacherMatchAdminFormatting, :hidden');
+            backupTeacherFormattingVals();
+            clearTeacherFormattingVals();
         }
         else if ($j('#teacherShowOnPortal').is(':checked'))
         {
-            $j('#teacherFieldOptions').find('input, select, textarea')
-                                      .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
-                                      .removeAttr('disabled');
-
-            restoreFieldVals();
+            enableFields('#teacherFormattingOptions', 'input, select, textarea',
+                         '#teacherShowOnPortal, #teacherMatchAdminFormatting, :hidden');
+            restoreTeacherFormattingVals();
         }
+    }
+
+    function teacherFormattingFieldChange()
+    {
+        $j('#teacherFormattingBackedUp').val('0');
+    }
+
+    function matchAdminDefaultChange()
+    {
+        if ($j('#teacherMatchAdminDefault').is(':checked'))
+        {
+            disableFields('#teacherDefaultOptions', 'input, select, textarea',
+                          '#teacherMatchAdminDefault, :hidden');
+            // backupTeacherDefaultVals();
+            clearTeacherDefaultVals();
+        }
+        else if ($j('#teacherShowOnPortal').is(':checked'))
+        {
+            enableFields('#teacherDefaultOptions', 'input, select, textarea',
+                         '#teacherMatchAdminDefault, :hidden');
+            restoreTeacherDefaultVals();
+        }
+    }
+
+    function teacherDefaultTypeChange()
+    {
+        $j('#backupTeacherDefaultType').val($j('#teacherDefaultType').val());
+
+        restoreTeacherDefaultVals();
+    }
+
+    function swapTeacherDefaultType()
+    {
+        switch ($j('#teacherDefaultType').val())
+        {
+            case 'none':
+                $j('#teacherStaticDefaultValue').remove();
+                $j('#teacherDynamicDefaultValue').remove();
+                break;
+
+            case 'static':
+                $j('#teacherDynamicDefaultValue').remove();
+                $j('#backupTeacherStaticDefaultValue')
+                    .before($j('#teacherStaticDefaultTemplate').html());
+                $j('#teacherStaticDefaultValue').on('change', teacherStaticDefaultChange);
+                break;
+
+            case 'dynamic':
+                $j('#teacherStaticDefaultValue').remove();
+                $j('#backupTeacherDynamicDefaultValue')
+                    .before($j('#teacherDynamicDefaultTemplate').html());
+                $j('#teacherDynamicDefaultValue').on('change', teacherDynamicDefaultChange);
+                break;
+        }
+    }
+
+    function teacherStaticDefaultChange()
+    {
+        $j('#backupTeacherStaticDefaultValue').val($j('#teacherStaticDefaultValue').val());
+    }
+
+    function teacherDynamicDefaultChange()
+    {
+        $j('#backupTeacherDynamicDefaultValue').val($j('#teacherDynamicDefaultValue').val());
     }
 
     (function ()
@@ -182,14 +382,11 @@
         target.before('<h2>Admin Portal</h2>');
         target.after(content);
 
-        backupFieldVals();
-        showOnPortalChange();
-        matchAdminChange();
+        backupTeacherFormattingVals();
 
-        $j('#teacherShowOnPortal').on('change', showOnPortalChange);
-        $j('#teacherMatchAdmin').on('change', matchAdminChange);
-        $j('#teacherFieldOptions').find('input, select, textarea')
-                                  .not('#teacherShowOnPortal, #teacherMatchAdmin, :hidden')
-                                  .on('change', fieldChange);
+        showOnPortalChange();
+        matchAdminFormattingChange();
+
+        setupEventHandlers();
     })();
 </script>
