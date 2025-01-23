@@ -6,5 +6,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="@types/jquery" level="application" />
     <orderEntry type="library" name="PowerSchool Commonscripts" level="application" />
+    <orderEntry type="library" name="PS Commonscripts" level="application" />
+    <orderEntry type="library" name="@types/jquery" level="application" />
   </component>
 </module>

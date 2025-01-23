@@ -1,0 +1,239 @@
+<script type="text/template" id="teacherTemplate">
+    <h2 class="toggle aria-toggle collapsed" data-target="teacherOptions">
+        Teacher Portal
+        <span>
+            <label>Show on Teacher Portal</label>
+            <input id="teacherShowOnPortal"
+                   name="[Gen.U_ESLOGS_TEACHER_FIELDS]showonportal"
+                   type="checkbox" value="">
+        </span>
+    </h2>
+    <div id="teacherOptions" class="hide">
+        <table id="teacherFormattingOptions" border="0" cellpadding="0" cellspacing="0"
+               class="linkDescList">
+            <thead>
+            <tr>
+                <th>Option</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="bold">Match Admin Portal Formatting</td>
+                <td>
+                    <input id="teacherMatchAdminFormatting"
+                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadminformatting"
+                           type="checkbox" value="" class="radioSlider">
+                    <input id="teacherFormattingBackedUp" type="hidden" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td class="bold">Field Label</td>
+                <td>
+                    <input id="teacherFieldLabel"
+                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]inputlabel"
+                           type="text" value="" size="40">
+                    <input id="backupInputLabel" type="hidden">
+                </td>
+            </tr>
+            <tr>
+                <td class="bold">Input Type</td>
+                <td>
+                    <select id="teacherInputType"
+                            name="[Gen.U_ESLOGS_TEACHER_FIELDS]inputtype"
+                            class="psTextWidget">
+                        <option value="text">Entry field</option>
+                        <option value="static">Static field</option>
+                        <option value="checkbox">Checkbox</option>
+                        <option value="popup">Popup menu</option>
+                        <option value="radio">Radio button</option>
+                        <option value="textarea">Entry box</option>
+                    </select>
+                    <input id="backupInputType" type="hidden">
+                </td>
+            </tr>
+            <tr>
+                <td class="bold">Width<br>(applies only to 'entry field' and 'entry box' types)</td>
+                <td>
+                    <input id="teacherInputWidth"
+                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]width"
+                           type="text" value="" size="2"
+                           data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli&quot;}"
+                           class="psNumWidget" data-minvalue="-9223372036854775808"
+                           data-maxvalue="9223372036854775807" data-isinteger="true">
+                    &nbsp;(width in characters)
+                    <input id="backupInputWidth" type="hidden">
+                </td>
+            </tr>
+            <tr>
+                <td class="bold">Height<br>(applies only to 'entry box' type)</td>
+                <td>
+                    <input id="teacherInputHeight"
+                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]height"
+                           type="text" value="" size="2"
+                           data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli2&quot;}"
+                           class="psNumWidget" data-minvalue="-9223372036854775808"
+                           data-maxvalue="9223372036854775807" data-isinteger="true">
+                    &nbsp;(height in lines)
+                    <input id="backupInputHeight" type="hidden">
+                </td>
+            </tr>
+            <tr>
+                <td class="bold">Data for Popup or Radio buttons<br>(press return after each entry)
+                </td>
+                <td>
+                <textarea id="teacherListEntries"
+                          name="[Gen.U_ESLOGS_TEACHER_FIELDS]data"
+                          rows="11" cols="40"></textarea>
+                    <input id="backupData" type="hidden">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h3 class="toggle aria-toggle collapsed" data-target="teacherDefault">
+            Default Value
+            <span>
+                <label>Enable</label>
+                <input id="teacherEnableDefault"
+                       type="checkbox" value="">
+            </span>
+        </h3>
+        <div id="teacherDefault" class="hide">
+            <table id="teacherDefaultOptions" border="0" cellpadding="0" cellspacing="0"
+                   class="linkDescList">
+                <thead>
+                <tr>
+                    <th>Option</th>
+                    <th style="width: 50%">Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="bold">Match Admin Portal Default Value Settings</td>
+                    <td>
+                        <input id="teacherMatchAdminDefault"
+                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadmindefault"
+                               type="checkbox" value="" class="radioSlider">
+                        <input id="teacherDefaultBackedUp" type="hidden" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bold">Default Value Type</td>
+                    <td>
+                        <select id="teacherDefaultType"
+                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaulttype"
+                                class="psTextWidget">
+                            <option value="none">No default</option>
+                            <option value="static">Static value</option>
+                            <option value="dynamic">Dynamic value</option>
+                        </select>
+                        <input id="backupTeacherDefaultType" type="hidden">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bold">Default Value</td>
+                    <td>
+                        <input id="backupTeacherStaticDefaultValue" type="hidden">
+                        <input id="backupTeacherDynamicDefaultValue" type="hidden">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h3 class="toggle aria-toggle collapsed" data-target="teacherValidation">
+            Validation
+            <span>
+                <label>Enable</label>
+                <input id="teacherEnableValidation"
+                       type="checkbox" value="">
+            </span>
+        </h3>
+        <div id="teacherValidation" class="hide">
+            <table id="teacherValidationOptions" border="0" cellpadding="0" cellspacing="0"
+                   class="linkDescList">
+                <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="bold">Match Admin Portal Validation Settings</td>
+                    <td>
+                        <input id="teacherMatchAdminValidation"
+                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadminvalidation"
+                               type="checkbox" value="" class="radioSlider">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bold">Required Field</td>
+                    <td>
+                        <input id="teacherRequiredField"
+                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]requiredfield"
+                               type="checkbox" value="" class="radioSlider">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bold">Validation Type</td>
+                    <td>
+                        <select id="teacherValidationType"
+                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationtype"
+                                class="psTextWidget">
+                            <option value="none">No validation</option>
+                            <option value="numeric">Numeric</option>
+                            <option value="date">Date</option>
+                            <option value="time">Time</option>
+                            <option value="email">Email</option>
+                            <option value="phone">Phone</option>
+                            <option value="regex">Regular Expression</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bold">Parameters</td>
+                    <td id="teacherValidationParameters">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="teacherStaticDefaultTemplate">
+    <input id="teacherStaticDefaultValue"
+           name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+           type="text" value="" size="40" maxlength="100">
+</script>
+
+<script type="text/template" id="teacherDynamicDefaultTemplate">
+    <select id="teacherDynamicDefaultValue"
+            name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+            class="psTextWidget">
+        <option value="placeholder1">Placeholder 1</option>
+        <option value="placeholder2">Placeholder 2</option>
+        <option value="placeholder3">Placeholder 3</option>
+        <option value="placeholder4">Placeholder 4</option>
+        <option value="placeholder5">Placeholder 5</option>
+    </select>
+</script>
+
+<script type="text/template" id="teacherRangeValidationTemplate">
+    Entered data is&nbsp;
+    <select id="teacherValidationOperator"
+            name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationoperator"
+            class="psTextWidget">
+    </select>&nbsp;
+    <input id="teacherValidationValue1"
+           name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationvalue1"
+           type="text" value="" size="10" maxlength="100">
+    <span id="teacherValidationValue2InsertionPoint"></span>
+</script>
+
+<script type="text/template" id="teacherRangeValidationValue2Template">
+    &nbsp;and&nbsp;
+    <input id="teacherValidationValue2"
+           name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationvalue2"
+           type="text" value="" size="10" maxlength="100">
+</script>
