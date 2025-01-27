@@ -1,62 +1,10 @@
-<script type="text/template" id="validationNumericOperatorsTemplate">
-    <option value="greater">Greater than</option>
-    <option value="greaterorequal">Greater than or equal to</option>
-    <option value="less">Less than</option>
-    <option value="lessorequal">Less than or equal to</option>
-    <option value="equal">Equal to</option>
-    <option value="notequal">Not equal to</option>
-    <option value="between">Between</option>
-    <option value="notbetween">Not between</option>
-</script>
-
-<script type="text/template" id="validationDateTimeOperatorsTemplate">
-    <option value="greater">After</option>
-    <option value="greaterorequal">On or after</option>
-    <option value="less">Before</option>
-    <option value="lessorequal">On or before</option>
-    <option value="equal">On</option>
-    <option value="notequal">Not on</option>
-    <option value="between">Between</option>
-    <option value="notbetween">Not between</option>
-</script>
+~[x:insertfile;/admin/logentries/eslogs/option_templates.txt]
 
 ~[x:insertfile;/admin/logentries/eslogs/admin_templates.txt]
 
 ~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
 
 <script>
-    function backupTeacherFormattingVals()
-    {
-        if ($j('#teacherFormattingBackedUp').val() === '0')
-        {
-            $j('#backupInputLabel').val($j('#teacherFieldLabel').val());
-            $j('#backupInputType').val($j('#teacherInputType').val());
-            $j('#backupInputWidth').val($j('#teacherInputWidth').val());
-            $j('#backupInputHeight').val($j('#teacherInputHeight').val());
-            $j('#backupData').val($j('#teacherListEntries').val());
-
-            $j('#teacherFormattingBackedUp').val('1');
-        }
-    }
-
-    function restoreTeacherFormattingVals()
-    {
-        $j('#teacherFieldLabel').val($j('#backupInputLabel').val());
-        $j('#teacherInputType').val($j('#backupInputType').val());
-        $j('#teacherInputWidth').val($j('#backupInputWidth').val());
-        $j('#teacherInputHeight').val($j('#backupInputHeight').val());
-        $j('#teacherListEntries').val($j('#backupData').val());
-    }
-
-    function clearTeacherFormattingVals()
-    {
-        $j('#teacherFieldLabel').val('');
-        $j('#teacherInputType').val('text');
-        $j('#teacherInputWidth').val('');
-        $j('#teacherInputHeight').val('');
-        $j('#teacherListEntries').val('');
-    }
-
     function backupTeacherDefaultVals()
     {
         $j('#backupTeacherDefaultType').val($j('#teacherDefaultType').val());
@@ -78,130 +26,29 @@
         swapTeacherDefaultType();
     }
 
-    function enableFields(container_selector, fields_selector, exclude_selector = '')
+    function collapsibleClick()
     {
-        if (exclude_selector !== '')
+        let checkbox = $j(this).find('input[type="checkbox"]');
+
+        if ($j(this).hasClass('expanded'))
         {
-            $j(container_selector).find(fields_selector)
-                                  .not(exclude_selector)
-                                  .removeAttr('disabled');
+            checkbox.prop('checked', false);
         }
         else
         {
-            $j(container_selector).find(fields_selector)
-                                  .removeAttr('disabled');
+            checkbox.prop('checked', true);
         }
     }
 
-    function disableFields(container_selector, fields_selector, exclude_selector = '')
+    function matchAdminCheckboxChange()
     {
-        if (exclude_selector !== '')
+        if ($j(this).is(':checked'))
         {
-            $j(container_selector).find(fields_selector)
-                                  .not(exclude_selector)
-                                  .attr('disabled', 'disabled');
+            $j(this).parent().parent().nextAll().addClass('hide');
         }
         else
         {
-            $j(container_selector).find(fields_selector)
-                                  .attr('disabled', 'disabled');
-        }
-    }
-
-    function setupEventHandlers()
-    {
-        $j('#teacherShowOnPortal').on('change', showOnPortalChange);
-
-        $j('#teacherMatchAdminFormatting').on('change', matchAdminFormattingChange);
-        $j('#teacherFormattingOptions').find('input, select, textarea')
-                                       .not('#teacherShowOnPortal, ' +
-                                            '#teacherMatchAdminFormatting, :hidden')
-                                       .on('change', teacherFormattingFieldChange);
-
-        $j('#teacherMatchAdminDefault').on('change', matchAdminDefaultChange);
-        $j('#teacherDefaultType').on('change', teacherDefaultTypeChange);
-        $j('#teacherStaticDefaultValue').on('change', teacherStaticDefaultChange);
-        $j('#teacherDynamicDefaultValue').on('change', teacherDynamicDefaultChange);
-    }
-
-    function showOnPortalChange()
-    {
-        if ($j('#teacherShowOnPortal').is(':checked'))
-        {
-            if ($j('#teacherMatchAdminFormatting').is(':checked'))
-            {
-                $j('#teacherMatchAdminFormatting').removeAttr('disabled');
-            }
-            else
-            {
-                // enableFields('#teacherFormattingOptions', 'input, select, textarea');
-                // restoreTeacherFormattingVals();
-
-                matchAdminFormattingChange();
-            }
-
-            if ($j('#teacherMatchAdminDefault').is(':checked'))
-            {
-                $j('#teacherMatchAdminDefault').removeAttr('disabled');
-            }
-            else
-            {
-                // enableFields('#teacherDefaultOptions', 'input, select, textarea');
-                // restoreTeacherDefaultVals();
-
-                matchAdminDefaultChange();
-            }
-        }
-        else
-        {
-            disableFields('#teacherFormattingOptions', 'input, select, textarea',
-                          '#teacherShowOnPortal, :hidden');
-            disableFields('#teacherDefaultOptions', 'input, select, textarea', ':hidden');
-
-            backupTeacherFormattingVals();
-            clearTeacherFormattingVals();
-
-            // backupTeacherDefaultVals();
-            clearTeacherDefaultVals();
-        }
-    }
-
-    function matchAdminFormattingChange()
-    {
-        if ($j('#teacherMatchAdminFormatting').is(':checked'))
-        {
-            disableFields('#teacherFormattingOptions', 'input, select, textarea',
-                          '#teacherShowOnPortal, #teacherMatchAdminFormatting, :hidden');
-            backupTeacherFormattingVals();
-            clearTeacherFormattingVals();
-        }
-        else if ($j('#teacherShowOnPortal').is(':checked'))
-        {
-            enableFields('#teacherFormattingOptions', 'input, select, textarea',
-                         '#teacherShowOnPortal, #teacherMatchAdminFormatting, :hidden');
-            restoreTeacherFormattingVals();
-        }
-    }
-
-    function teacherFormattingFieldChange()
-    {
-        $j('#teacherFormattingBackedUp').val('0');
-    }
-
-    function matchAdminDefaultChange()
-    {
-        if ($j('#teacherMatchAdminDefault').is(':checked'))
-        {
-            disableFields('#teacherDefaultOptions', 'input, select, textarea',
-                          '#teacherMatchAdminDefault, :hidden');
-            // backupTeacherDefaultVals();
-            clearTeacherDefaultVals();
-        }
-        else if ($j('#teacherShowOnPortal').is(':checked'))
-        {
-            enableFields('#teacherDefaultOptions', 'input, select, textarea',
-                         '#teacherMatchAdminDefault, :hidden');
-            restoreTeacherDefaultVals();
+            $j(this).parent().parent().nextAll().removeClass('hide');
         }
     }
 
@@ -247,6 +94,17 @@
         $j('#backupTeacherDynamicDefaultValue').val($j('#teacherDynamicDefaultValue').val());
     }
 
+    function setupEventHandlers()
+    {
+        $j('.toggle').on('click', collapsibleClick);
+
+        $j('.matchAdmin').on('change', matchAdminCheckboxChange);
+
+        $j('#teacherDefaultType').on('change', teacherDefaultTypeChange);
+        $j('#teacherStaticDefaultValue').on('change', teacherStaticDefaultChange);
+        $j('#teacherDynamicDefaultValue').on('change', teacherDynamicDefaultChange);
+    }
+
     (function ()
     {
         let adminContent = $j('#adminTemplate').html();
@@ -264,7 +122,7 @@
         // backupTeacherFormattingVals();
         // backupTeacherDefaultVals();
 
-        showOnPortalChange();
+        // showOnPortalChange();
         // matchAdminFormattingChange();
         // matchAdminDefaultChange();
 

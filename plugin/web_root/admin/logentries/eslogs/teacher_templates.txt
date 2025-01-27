@@ -1,5 +1,5 @@
 <script type="text/template" id="teacherTemplate">
-    <h2 class="toggle aria-toggle collapsed" data-target="teacherOptions">
+    <h2 id="teacherCollapsible" class="toggle aria-toggle collapsed" data-target="teacherOptions">
         Teacher Portal
         <span>
             <label>Show on Teacher Portal</label>
@@ -14,7 +14,7 @@
             <thead>
             <tr>
                 <th>Option</th>
-                <th>Value</th>
+                <th style="width: 50%">Value</th>
             </tr>
             </thead>
             <tbody>
@@ -23,8 +23,7 @@
                 <td>
                     <input id="teacherMatchAdminFormatting"
                            name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadminformatting"
-                           type="checkbox" value="" class="radioSlider">
-                    <input id="teacherFormattingBackedUp" type="hidden" value="0">
+                           type="checkbox" value="" class="radioSlider matchAdmin">
                 </td>
             </tr>
             <tr>
@@ -33,7 +32,6 @@
                     <input id="teacherFieldLabel"
                            name="[Gen.U_ESLOGS_TEACHER_FIELDS]inputlabel"
                            type="text" value="" size="40">
-                    <input id="backupInputLabel" type="hidden">
                 </td>
             </tr>
             <tr>
@@ -49,7 +47,6 @@
                         <option value="radio">Radio button</option>
                         <option value="textarea">Entry box</option>
                     </select>
-                    <input id="backupInputType" type="hidden">
                 </td>
             </tr>
             <tr>
@@ -62,7 +59,6 @@
                            class="psNumWidget" data-minvalue="-9223372036854775808"
                            data-maxvalue="9223372036854775807" data-isinteger="true">
                     &nbsp;(width in characters)
-                    <input id="backupInputWidth" type="hidden">
                 </td>
             </tr>
             <tr>
@@ -75,7 +71,6 @@
                            class="psNumWidget" data-minvalue="-9223372036854775808"
                            data-maxvalue="9223372036854775807" data-isinteger="true">
                     &nbsp;(height in lines)
-                    <input id="backupInputHeight" type="hidden">
                 </td>
             </tr>
             <tr>
@@ -85,7 +80,6 @@
                 <textarea id="teacherListEntries"
                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]data"
                           rows="11" cols="40"></textarea>
-                    <input id="backupData" type="hidden">
                 </td>
             </tr>
             </tbody>
@@ -113,7 +107,7 @@
                     <td>
                         <input id="teacherMatchAdminDefault"
                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadmindefault"
-                               type="checkbox" value="" class="radioSlider">
+                               type="checkbox" value="" class="radioSlider matchAdmin">
                         <input id="teacherDefaultBackedUp" type="hidden" value="0">
                     </td>
                 </tr>
@@ -154,7 +148,7 @@
                 <thead>
                 <tr>
                     <th>Option</th>
-                    <th>Value</th>
+                    <th style="width: 50%">Value</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -163,7 +157,7 @@
                     <td>
                         <input id="teacherMatchAdminValidation"
                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadminvalidation"
-                               type="checkbox" value="" class="radioSlider">
+                               type="checkbox" value="" class="radioSlider matchAdmin">
                     </td>
                 </tr>
                 <tr>

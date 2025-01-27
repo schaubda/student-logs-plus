@@ -1,0 +1,21 @@
+<script type="text/template" id="validationNumericOperatorsTemplate">
+    <option value="greater">Greater than</option>
+    <option value="greaterorequal">Greater than or equal to</option>
+    <option value="less">Less than</option>
+    <option value="lessorequal">Less than or equal to</option>
+    <option value="equal">Equal to</option>
+    <option value="notequal">Not equal to</option>
+    <option value="between">Between</option>
+    <option value="notbetween">Not between</option>
+</script>
+
+<script type="text/template" id="validationDateTimeOperatorsTemplate">
+    <option value="greater">After</option>
+    <option value="greaterorequal">On or after</option>
+    <option value="less">Before</option>
+    <option value="lessorequal">On or before</option>
+    <option value="equal">On</option>
+    <option value="notequal">Not on</option>
+    <option value="between">Between</option>
+    <option value="notbetween">Not between</option>
+</script>
