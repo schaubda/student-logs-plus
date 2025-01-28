@@ -5,27 +5,6 @@
 ~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
 
 <script>
-    function backupTeacherDefaultVals()
-    {
-        $j('#backupTeacherDefaultType').val($j('#teacherDefaultType').val());
-        $j('#backupTeacherStaticDefaultValue').val($j('#teacherStaticDefaultValue').val());
-        $j('#backupTeacherDynamicDefaultValue').val($j('#teacherDynamicDefaultValue').val());
-    }
-
-    function restoreTeacherDefaultVals()
-    {
-        $j('#teacherDefaultType').val($j('#backupTeacherDefaultType').val());
-        swapTeacherDefaultType();
-        $j('#teacherStaticDefaultValue').val($j('#backupTeacherStaticDefaultValue').val());
-        $j('#teacherDynamicDefaultValue').val($j('#backupTeacherDynamicDefaultValue').val());
-    }
-
-    function clearTeacherDefaultVals()
-    {
-        $j('#teacherDefaultType').val('none');
-        swapTeacherDefaultType();
-    }
-
     function collapsibleClick()
     {
         let checkbox = $j(this).find('input[type="checkbox"]');
@@ -52,60 +31,64 @@
         }
     }
 
-    function teacherDefaultTypeChange()
+    function setDefaultFields(portal)
     {
-        $j('#backupTeacherDefaultType').val($j('#teacherDefaultType').val());
+        let prefix = '#' + portal;
 
-        restoreTeacherDefaultVals();
-    }
-
-    function swapTeacherDefaultType()
-    {
-        switch ($j('#teacherDefaultType').val())
+        switch ($j(prefix + 'DefaultType').val())
         {
             case 'none':
-                $j('#teacherStaticDefaultValue').remove();
-                $j('#teacherDynamicDefaultValue').remove();
+                $j(prefix + 'StaticDefaultValue').remove();
+                $j(prefix + 'DynamicDefaultValue').remove();
                 break;
 
             case 'static':
-                $j('#teacherDynamicDefaultValue').remove();
-                $j('#backupTeacherStaticDefaultValue')
-                    .before($j('#teacherStaticDefaultTemplate').html());
-                $j('#teacherStaticDefaultValue').on('change', teacherStaticDefaultChange);
+                $j(prefix + 'DynamicDefaultValue').remove();
+                $j(prefix + 'BackupStaticDefaultValue')
+                    .before($j(prefix + 'StaticDefaultTemplate').html());
+                $j(prefix + 'StaticDefaultValue').on('change', defaultChange);
                 break;
 
             case 'dynamic':
-                $j('#teacherStaticDefaultValue').remove();
-                $j('#backupTeacherDynamicDefaultValue')
-                    .before($j('#teacherDynamicDefaultTemplate').html());
-                $j('#teacherDynamicDefaultValue').on('change', teacherDynamicDefaultChange);
+                $j(prefix + 'StaticDefaultValue').remove();
+                $j(prefix + 'BackupDynamicDefaultValue')
+                    .before($j(prefix + 'DynamicDefaultTemplate').html());
+                $j(prefix + 'DynamicDefaultValue').on('change', defaultChange);
                 break;
         }
     }
 
-    function teacherStaticDefaultChange()
+    function defaultTypeChange()
     {
-        $j('#backupTeacherStaticDefaultValue').val($j('#teacherStaticDefaultValue').val());
+        let defaultType = $j(this);
+        let portal = defaultType.data('portal');
+
+        setDefaultFields(portal);
+
+        $j('#' + portal + 'StaticDefaultValue')
+            .val($j('#' + portal + 'BackupStaticDefaultValue').val());
+
+        $j('#' + portal + 'DynamicDefaultValue')
+            .val($j('#' + portal + 'BackupDynamicDefaultValue').val());
     }
 
-    function teacherDynamicDefaultChange()
+    function defaultChange()
     {
-        $j('#backupTeacherDynamicDefaultValue').val($j('#teacherDynamicDefaultValue').val());
+        let defaultInput = $j(this);
+        let backup = defaultInput.next();
+
+        backup.val(defaultInput.val());
     }
 
     function setupEventHandlers()
     {
         $j('.toggle').on('click', collapsibleClick);
-
         $j('.matchAdmin').on('change', matchAdminCheckboxChange);
-
-        $j('#teacherDefaultType').on('change', teacherDefaultTypeChange);
-        $j('#teacherStaticDefaultValue').on('change', teacherStaticDefaultChange);
-        $j('#teacherDynamicDefaultValue').on('change', teacherDynamicDefaultChange);
+        $j('.defaultType').on('change', defaultTypeChange);
+        $j('.defaultVal').on('change', defaultChange);
     }
 
-    (function ()
+    function addCustomPageContent()
     {
         let adminContent = $j('#adminTemplate').html();
         let teacherContent = $j('#teacherTemplate').html();
@@ -118,13 +101,14 @@
         adminOptions.prepend('<h2>Admin Portal</h2>');
         adminOptions.append(adminContent);
         adminOptions.after(teacherContent);
+    }
 
-        // backupTeacherFormattingVals();
-        // backupTeacherDefaultVals();
+    (function ()
+    {
+        addCustomPageContent();
 
-        // showOnPortalChange();
-        // matchAdminFormattingChange();
-        // matchAdminDefaultChange();
+        setDefaultFields('teacher');
+        setDefaultFields('admin');
 
         setupEventHandlers();
     })();

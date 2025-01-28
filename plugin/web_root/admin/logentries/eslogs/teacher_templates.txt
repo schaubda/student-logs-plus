@@ -108,7 +108,6 @@
                         <input id="teacherMatchAdminDefault"
                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadmindefault"
                                type="checkbox" value="" class="radioSlider matchAdmin">
-                        <input id="teacherDefaultBackedUp" type="hidden" value="0">
                     </td>
                 </tr>
                 <tr>
@@ -116,19 +115,21 @@
                     <td>
                         <select id="teacherDefaultType"
                                 name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaulttype"
-                                class="psTextWidget">
+                                class="psTextWidget defaultType"
+                                data-portal="teacher">
                             <option value="none">No default</option>
                             <option value="static">Static value</option>
                             <option value="dynamic">Dynamic value</option>
                         </select>
-                        <input id="backupTeacherDefaultType" type="hidden">
                     </td>
                 </tr>
                 <tr>
                     <td class="bold">Default Value</td>
                     <td>
-                        <input id="backupTeacherStaticDefaultValue" type="hidden">
-                        <input id="backupTeacherDynamicDefaultValue" type="hidden">
+                        <input id="teacherBackupStaticDefaultValue" type="hidden"
+                               class="defaultVal">
+                        <input id="teacherBackupDynamicDefaultValue" type="hidden"
+                               class="defaultVal">
                     </td>
                 </tr>
                 </tbody>

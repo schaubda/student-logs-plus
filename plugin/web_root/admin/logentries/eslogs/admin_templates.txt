@@ -23,19 +23,19 @@
                 <td>
                     <select id="adminDefaultType"
                             name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaulttype"
-                            class="psTextWidget">
+                            class="psTextWidget defaultType"
+                            data-portal="admin">
                         <option value="none">No default</option>
                         <option value="static">Static value</option>
                         <option value="dynamic">Dynamic value</option>
                     </select>
-                    <input id="backupAdminDefaultType" type="hidden">
                 </td>
             </tr>
             <tr>
                 <td class="bold">Default Value</td>
                 <td>
-                    <input id="backupAdminStaticDefaultValue" type="hidden">
-                    <input id="backupAdminDynamicDefaultValue" type="hidden">
+                    <input id="adminBackupStaticDefaultValue" type="hidden" class="defaultVal">
+                    <input id="adminBackupDynamicDefaultValue" type="hidden" class="defaultVal">
                 </td>
             </tr>
             </tbody>
