@@ -89,6 +89,7 @@
             <span>
                 <label>Enable</label>
                 <input id="teacherEnableDefault"
+                       name="[Gen.U_ESLOGS_TEACHER_FIELDS]enabledefault"
                        type="checkbox" value="">
             </span>
         </h3>
@@ -140,6 +141,7 @@
             <span>
                 <label>Enable</label>
                 <input id="teacherEnableValidation"
+                       name="[Gen.U_ESLOGS_TEACHER_FIELDS]enablevalidation"
                        type="checkbox" value="">
             </span>
         </h3>

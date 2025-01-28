@@ -103,13 +103,30 @@
         adminOptions.after(teacherContent);
     }
 
+    function setupFields()
+    {
+        $j('.toggle')
+            .each(function ()
+                  {
+                      let checkbox = $j(this).find('input[type="checkbox"]');
+
+                      if (checkbox.is(':checked'))
+                      {
+                          $j(this).removeClass('collapsed')
+                                  .addClass('expanded');
+                          $j(this).attr('aria-expanded', 'true');
+                          $j(this).next().removeClass('hide');
+                      }
+                  });
+
+        setDefaultFields('admin');
+        setDefaultFields('teacher');
+    }
+
     (function ()
     {
         addCustomPageContent();
-
-        setDefaultFields('teacher');
-        setDefaultFields('admin');
-
+        setupFields();
         setupEventHandlers();
     })();
 </script>
