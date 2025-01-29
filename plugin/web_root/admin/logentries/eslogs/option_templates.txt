@@ -1,3 +1,27 @@
+<script type="text/template" id="defaultTypesTemplate">
+    <option value="none">No default</option>
+    <option value="static">Static value</option>
+    <option value="dynamic">Dynamic value</option>
+</script>
+
+<script type="text/template" id="dynamicDefaultsTemplate">
+    <option value="placeholder1">Placeholder 1</option>
+    <option value="placeholder2">Placeholder 2</option>
+    <option value="placeholder3">Placeholder 3</option>
+    <option value="placeholder4">Placeholder 4</option>
+    <option value="placeholder5">Placeholder 5</option>
+</script>
+
+<script type="text/template" id="validationTypesTemplate">
+    <option value="none">No validation</option>
+    <option value="numeric">Numeric</option>
+    <option value="date">Date</option>
+    <option value="time">Time</option>
+    <option value="email">Email</option>
+    <option value="phone">Phone</option>
+    <option value="regex">Regular Expression</option>
+</script>
+
 <script type="text/template" id="validationNumericOperatorsTemplate">
     <option value="greater">Greater than</option>
     <option value="greaterorequal">Greater than or equal to</option>

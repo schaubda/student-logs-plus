@@ -5,6 +5,28 @@
 ~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
 
 <script>
+    function setHide(jQueryElement, hide)
+    {
+        if (hide)
+        {
+            if (!jQueryElement.hasClass('hide'))
+            {
+                jQueryElement.addClass('hide');
+            }
+
+            jQueryElement.prop('disabled', true);
+        }
+        else
+        {
+            if (jQueryElement.hasClass('hide'))
+            {
+                jQueryElement.removeClass('hide');
+            }
+
+            jQueryElement.prop('disabled', false);
+        }
+    }
+
     function collapsibleClick()
     {
         let checkbox = $j(this).find('input[type="checkbox"]');
@@ -23,11 +45,11 @@
     {
         if ($j(this).is(':checked'))
         {
-            $j(this).parent().parent().nextAll().addClass('hide');
+            setHide($j(this).parent().parent().nextAll(), true);
         }
         else
         {
-            $j(this).parent().parent().nextAll().removeClass('hide');
+            setHide($j(this).parent().parent().nextAll(), false);
         }
     }
 
@@ -38,22 +60,18 @@
         switch ($j(prefix + 'DefaultType').val())
         {
             case 'none':
-                $j(prefix + 'StaticDefaultValue').remove();
-                $j(prefix + 'DynamicDefaultValue').remove();
+                setHide($j(prefix + 'StaticDefaultValue'), true);
+                setHide($j(prefix + 'DynamicDefaultValue'), true);
                 break;
 
             case 'static':
-                $j(prefix + 'DynamicDefaultValue').remove();
-                $j(prefix + 'BackupStaticDefaultValue')
-                    .before($j(prefix + 'StaticDefaultTemplate').html());
-                $j(prefix + 'StaticDefaultValue').on('change', defaultChange);
+                setHide($j(prefix + 'StaticDefaultValue'), false);
+                setHide($j(prefix + 'DynamicDefaultValue'), true);
                 break;
 
             case 'dynamic':
-                $j(prefix + 'StaticDefaultValue').remove();
-                $j(prefix + 'BackupDynamicDefaultValue')
-                    .before($j(prefix + 'DynamicDefaultTemplate').html());
-                $j(prefix + 'DynamicDefaultValue').on('change', defaultChange);
+                setHide($j(prefix + 'StaticDefaultValue'), true);
+                setHide($j(prefix + 'DynamicDefaultValue'), false);
                 break;
         }
     }
@@ -64,20 +82,6 @@
         let portal = defaultType.data('portal');
 
         setDefaultFields(portal);
-
-        $j('#' + portal + 'StaticDefaultValue')
-            .val($j('#' + portal + 'BackupStaticDefaultValue').val());
-
-        $j('#' + portal + 'DynamicDefaultValue')
-            .val($j('#' + portal + 'BackupDynamicDefaultValue').val());
-    }
-
-    function defaultChange()
-    {
-        let defaultInput = $j(this);
-        let backup = defaultInput.next();
-
-        backup.val(defaultInput.val());
     }
 
     function setupEventHandlers()
@@ -85,7 +89,6 @@
         $j('.toggle').on('click', collapsibleClick);
         $j('.matchAdmin').on('change', matchAdminCheckboxChange);
         $j('.defaultType').on('change', defaultTypeChange);
-        $j('.defaultVal').on('change', defaultChange);
     }
 
     function addCustomPageContent()
@@ -115,7 +118,7 @@
                           $j(this).removeClass('collapsed')
                                   .addClass('expanded');
                           $j(this).attr('aria-expanded', 'true');
-                          $j(this).next().removeClass('hide');
+                          setHide($j(this).next(), false);
                       }
                   });
 

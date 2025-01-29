@@ -127,10 +127,18 @@
                 <tr>
                     <td class="bold">Default Value</td>
                     <td>
-                        <input id="teacherBackupStaticDefaultValue" type="hidden"
-                               class="defaultVal">
-                        <input id="teacherBackupDynamicDefaultValue" type="hidden"
-                               class="defaultVal">
+                        <input id="teacherStaticDefaultValue"
+                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+                               type="text" value="" size="40" maxlength="100">
+                        <select id="teacherDynamicDefaultValue"
+                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+                                class="psTextWidget dynamicDefaultValue">
+                            <option value="placeholder1">Placeholder 1</option>
+                            <option value="placeholder2">Placeholder 2</option>
+                            <option value="placeholder3">Placeholder 3</option>
+                            <option value="placeholder4">Placeholder 4</option>
+                            <option value="placeholder5">Placeholder 5</option>
+                        </select>
                     </td>
                 </tr>
                 </tbody>
@@ -176,7 +184,7 @@
                     <td>
                         <select id="teacherValidationType"
                                 name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationtype"
-                                class="psTextWidget">
+                                class="psTextWidget validationType">
                             <option value="none">No validation</option>
                             <option value="numeric">Numeric</option>
                             <option value="date">Date</option>
@@ -207,12 +215,7 @@
 <script type="text/template" id="teacherDynamicDefaultTemplate">
     <select id="teacherDynamicDefaultValue"
             name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
-            class="psTextWidget">
-        <option value="placeholder1">Placeholder 1</option>
-        <option value="placeholder2">Placeholder 2</option>
-        <option value="placeholder3">Placeholder 3</option>
-        <option value="placeholder4">Placeholder 4</option>
-        <option value="placeholder5">Placeholder 5</option>
+            class="psTextWidget dynamicDefaultValue">
     </select>
 </script>
 
