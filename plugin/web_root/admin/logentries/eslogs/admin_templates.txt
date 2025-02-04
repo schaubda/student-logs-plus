@@ -1,15 +1,15 @@
 <script type="text/template" id="adminTemplate">
-    <h3 class="toggle aria-toggle collapsed" data-target="adminDefault">
+    <h3 class="toggle aria-toggle collapsed" data-target="adminDef">
         Default Value
         <span>
             <label>Enable</label>
-            <input id="adminEnableDefault"
+            <input id="adminDefEnable"
                    name="[Gen.U_ESLOGS_ADMIN_FIELDS]enabledefault"
                    type="checkbox" value="">
         </span>
     </h3>
-    <div id="adminDefault" class="hide">
-        <table id="adminDefaultOptions" border="0" cellpadding="0" cellspacing="0"
+    <div id="adminDef" class="hide">
+        <table id="adminDefOptions" border="0" cellpadding="0" cellspacing="0"
                class="linkDescList">
             <thead>
             <tr>
@@ -21,7 +21,7 @@
             <tr>
                 <td class="bold">Default Value Type</td>
                 <td>
-                    <select id="adminDefaultType"
+                    <select id="adminDefType"
                             name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaulttype"
                             class="psTextWidget defaultType"
                             data-portal="admin">
@@ -34,12 +34,12 @@
             <tr>
                 <td class="bold">Default Value</td>
                 <td>
-                    <input id="adminStaticDefaultValue"
+                    <input id="adminDefStaticVal"
                            name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaultvalue"
                            type="text" value="" size="40" maxlength="100">
-                    <select id="adminDynamicDefaultValue"
+                    <select id="adminDefDynamicVal"
                             name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaultvalue"
-                            class="psTextWidget dynamicDefaultValue">
+                            class="psTextWidget defaultDynamicVal">
                         <option value="placeholder1">Placeholder 1</option>
                         <option value="placeholder2">Placeholder 2</option>
                         <option value="placeholder3">Placeholder 3</option>
@@ -51,17 +51,17 @@
             </tbody>
         </table>
     </div>
-    <h3 class="toggle aria-toggle collapsed" data-target="adminValidation">
+    <h3 class="toggle aria-toggle collapsed" data-target="adminValid">
         Validation
         <span>
             <label>Enable</label>
-            <input id="adminEnableValidation"
+            <input id="adminValidEnable"
                    name="[Gen.U_ESLOGS_ADMIN_FIELDS]enablevalidation"
                    type="checkbox" value="">
         </span>
     </h3>
-    <div id="adminValidation" class="hide">
-        <table id="adminValidationOptions" border="0" cellpadding="0" cellspacing="0"
+    <div id="adminValid" class="hide">
+        <table id="adminValidOptions" border="0" cellpadding="0" cellspacing="0"
                class="linkDescList">
             <thead>
             <tr>
@@ -73,7 +73,7 @@
             <tr>
                 <td class="bold">Required Field</td>
                 <td>
-                    <input id="adminRequiredField"
+                    <input id="adminValidRequired"
                            name="[Gen.U_ESLOGS_ADMIN_FIELDS]requiredfield"
                            type="checkbox" value="" class="radioSlider">
                 </td>
@@ -81,7 +81,7 @@
             <tr>
                 <td class="bold">Validation Type</td>
                 <td>
-                    <select id="adminValidationType"
+                    <select id="adminValidType"
                             name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtype"
                             class="psTextWidget validationType"
                             data-portal="admin">
@@ -97,10 +97,10 @@
             </tr>
             <tr>
                 <td class="bold">Parameters</td>
-                <td id="adminValidationParameters">
-                    <span id="adminValidationSpan1">
-                        <span id="adminValidtionParemeterLabel">Entered data is&nbsp;</span>&nbsp;
-                        <select id="adminValidationOperator"
+                <td id="adminValidParams">
+                    <span id="adminValidSpan1">
+                        <span id="adminValidParamLabel">Entered data is&nbsp;</span>&nbsp;
+                        <select id="adminValidOperator"
                                 name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationoperator"
                                 class="psTextWidget validationOperator"
                                 data-portal="admin">
@@ -114,31 +114,31 @@
                             <option value="notbetween">Not between</option>
                         </select>
                         <br>
-                        <input id="adminValidationTextValue1"
+                        <input id="adminValidTextVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
                                type="text" value="" size="10" maxlength="100">
-                        <input id="adminValidationNumberValue1"
+                        <input id="adminValidNumberVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval1"
                                type="text" value="" size="5" class="psNumWidget">
-                        <input id="adminValidationDateValue1"
+                        <input id="adminValidDateVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval1"
                                type="text" value="" size="10" class="psDateWidget">
-                        <input id="adminValidationTimeValue1"
+                        <input id="adminValidTimeVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
                                type="text" value="" size="10" class="timeEntry">
                     </span>
-                    <span id="adminValidationSpan2">
+                    <span id="adminValidSpan2">
                         &nbsp;and&nbsp;
-                        <input id="adminValidationTextValue2"
+                        <input id="adminValidTextVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
-                               type="text" value="" size="10" maxlength="200">
-                        <input id="adminValidationNumberValue2"
+                               type="text" value="" size="10" maxlength="100">
+                        <input id="adminValidNumberVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval2"
                                type="text" value="" size="5" class="psNumWidget">
-                        <input id="adminValidationDateValue2"
+                        <input id="adminValidDateVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval2"
                                type="text" value="" size="10" class="psDateWidget">
-                        <input id="adminValidationTimeValue2"
+                        <input id="adminValidTimeVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
                                type="text" value="" size="10" class="timeEntry">
                     </span>
@@ -147,23 +147,4 @@
             </tbody>
         </table>
     </div>
-</script>
-
-<script type="text/template" id="adminRangeValidationTemplate">
-    Entered data is&nbsp;
-    <select id="adminValidationOperator"
-            name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationoperator"
-            class="psTextWidget">
-    </select>&nbsp;
-    <input id="adminValidationValue1"
-           name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationvalue1"
-           type="text" value="" size="10" maxlength="100">
-    <span id="adminValidationValue2InsertionPoint"></span>
-</script>
-
-<script type="text/template" id="adminRangeValidationValue2Template">
-    &nbsp;and&nbsp;
-    <input id="adminValidationValue2"
-           name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationvalue2"
-           type="text" value="" size="10" maxlength="100">
 </script>

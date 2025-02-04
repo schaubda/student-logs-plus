@@ -84,18 +84,18 @@
         switch ($j(prefix + 'DefaultType').val())
         {
             case 'none':
-                setHide($j(prefix + 'StaticDefaultValue'), true);
-                setHide($j(prefix + 'DynamicDefaultValue'), true);
+                setHide($j(prefix + 'DefStaticValue'), true);
+                setHide($j(prefix + 'DefDynamicValue'), true);
                 break;
 
             case 'static':
-                setHide($j(prefix + 'StaticDefaultValue'), false);
-                setHide($j(prefix + 'DynamicDefaultValue'), true);
+                setHide($j(prefix + 'DefStaticValue'), false);
+                setHide($j(prefix + 'DefDynamicValue'), true);
                 break;
 
             case 'dynamic':
-                setHide($j(prefix + 'StaticDefaultValue'), true);
-                setHide($j(prefix + 'DynamicDefaultValue'), false);
+                setHide($j(prefix + 'DefStaticValue'), true);
+                setHide($j(prefix + 'DefDynamicValue'), false);
                 break;
         }
     }
@@ -111,55 +111,55 @@
     function setValidationFields(portal)
     {
         let prefix = '#' + portal;
-        let validationType = $j(prefix + 'ValidationType').val();
+        let validationType = $j(prefix + 'ValidType').val();
 
         switch (validationType)
         {
             case 'none':
-                setHide($j(prefix + 'ValidationSpan1'), true);
-                setHide($j(prefix + 'ValidationSpan2'), true);
+                setHide($j(prefix + 'ValidSpan1'), true);
+                setHide($j(prefix + 'ValidSpan2'), true);
                 break;
 
             case 'numeric':
-                setHide($j(prefix + 'ValidationSpan1'), false);
+                setHide($j(prefix + 'ValidSpan1'), false);
                 setValidationValue2Visible(portal);
-                $j(prefix + 'ValidationValue1').removeClass()
-                $j(prefix + 'ValidationValue2').removeClass()
+                $j(prefix + 'ValidValue1').removeClass()
+                $j(prefix + 'ValidValue2').removeClass()
                 initBehaviors();
-                $j(prefix + 'ValidationValue1').addClass('psNumWidget');
-                $j(prefix + 'ValidationValue2').addClass('psNumWidget');
+                $j(prefix + 'ValidValue1').addClass('psNumWidget');
+                $j(prefix + 'ValidValue2').addClass('psNumWidget');
                 initBehaviors();
                 break;
 
             case 'date':
-                setHide($j(prefix + 'ValidationSpan1'), false);
+                setHide($j(prefix + 'ValidSpan1'), false);
                 setValidationValue2Visible(portal);
-                $j(prefix + 'ValidationValue1').removeClass();
-                $j(prefix + 'ValidationValue2').removeClass();
+                $j(prefix + 'ValidValue1').removeClass();
+                $j(prefix + 'ValidValue2').removeClass();
                 initBehaviors();
-                $j(prefix + 'ValidationValue1').addClass('psDateWidget');
-                $j(prefix + 'ValidationValue2').addClass('psDateWidget');
+                $j(prefix + 'ValidValue1').addClass('psDateWidget');
+                $j(prefix + 'ValidValue2').addClass('psDateWidget');
                 initBehaviors();
                 break;
 
             case 'time':
-                setHide($j(prefix + 'ValidationSpan1'), false);
+                setHide($j(prefix + 'ValidSpan1'), false);
                 setValidationValue2Visible(portal);
-                $j(prefix + 'ValidationValue1').removeClass();
-                $j(prefix + 'ValidationValue2').removeClass();
+                $j(prefix + 'ValidValue1').removeClass();
+                $j(prefix + 'ValidValue2').removeClass();
                 initBehaviors();
-                $j(prefix + 'ValidationValue1').addClass('timeEntry');
-                $j(prefix + 'ValidationValue2').addClass('timeEntry');
+                $j(prefix + 'ValidValue1').addClass('timeEntry');
+                $j(prefix + 'ValidValue2').addClass('timeEntry');
                 initBehaviors();
                 break;
 
             case 'email':
             case 'phone':
             case 'regex':
-                setHide($j(prefix + 'ValidationSpan1'), false);
+                setHide($j(prefix + 'ValidSpan1'), false);
                 setValidationValue2Visible(portal);
-                $j(prefix + 'ValidationValue1').removeClass();
-                $j(prefix + 'ValidationValue2').removeClass();
+                $j(prefix + 'ValidValue1').removeClass();
+                $j(prefix + 'ValidValue2').removeClass();
                 initBehaviors();
                 break;
         }
@@ -176,7 +176,7 @@
     function setValidationValue2Visible(portal)
     {
         let prefix = '#' + portal;
-        let operator = $j(prefix + 'ValidationOperator').val();
+        let operator = $j(prefix + 'ValidOperator').val();
 
         if (operator === 'greater' ||
             operator === 'greaterorequal' ||
@@ -185,12 +185,12 @@
             operator === 'equal' ||
             operator === 'notequal')
         {
-            setHide($j(prefix + 'ValidationSpan2'), true);
+            setHide($j(prefix + 'ValidSpan2'), true);
         }
         else if (operator === 'between' ||
                  operator === 'notbetween')
         {
-            setHide($j(prefix + 'ValidationSpan2'), false);
+            setHide($j(prefix + 'ValidSpan2'), false);
         }
     }
 
