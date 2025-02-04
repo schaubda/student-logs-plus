@@ -66,7 +66,7 @@
             <thead>
             <tr>
                 <th>Option</th>
-                <th>Value</th>
+                <th style="width: 50%">Value</th>
             </tr>
             </thead>
             <tbody>
@@ -83,7 +83,8 @@
                 <td>
                     <select id="adminValidationType"
                             name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtype"
-                            class="psTextWidget validationType">
+                            class="psTextWidget validationType"
+                            data-portal="admin">
                         <option value="none">No validation</option>
                         <option value="numeric">Numeric</option>
                         <option value="date">Date</option>
@@ -97,24 +98,55 @@
             <tr>
                 <td class="bold">Parameters</td>
                 <td id="adminValidationParameters">
+                    <span id="adminValidationSpan1">
+                        <span id="adminValidtionParemeterLabel">Entered data is&nbsp;</span>&nbsp;
+                        <select id="adminValidationOperator"
+                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationoperator"
+                                class="psTextWidget validationOperator"
+                                data-portal="admin">
+                            <option value="greater">Greater than</option>
+                            <option value="greaterorequal">Greater than or equal to</option>
+                            <option value="less">Less than</option>
+                            <option value="lessorequal">Less than or equal to</option>
+                            <option value="equal">Equal to</option>
+                            <option value="notequal">Not equal to</option>
+                            <option value="between">Between</option>
+                            <option value="notbetween">Not between</option>
+                        </select>
+                        <br>
+                        <input id="adminValidationTextValue1"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
+                               type="text" value="" size="10" maxlength="100">
+                        <input id="adminValidationNumberValue1"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval1"
+                               type="text" value="" size="5" class="psNumWidget">
+                        <input id="adminValidationDateValue1"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval1"
+                               type="text" value="" size="10" class="psDateWidget">
+                        <input id="adminValidationTimeValue1"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
+                               type="text" value="" size="10" class="timeEntry">
+                    </span>
+                    <span id="adminValidationSpan2">
+                        &nbsp;and&nbsp;
+                        <input id="adminValidationTextValue2"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
+                               type="text" value="" size="10" maxlength="200">
+                        <input id="adminValidationNumberValue2"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval2"
+                               type="text" value="" size="5" class="psNumWidget">
+                        <input id="adminValidationDateValue2"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval2"
+                               type="text" value="" size="10" class="psDateWidget">
+                        <input id="adminValidationTimeValue2"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
+                               type="text" value="" size="10" class="timeEntry">
+                    </span>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-</script>
-
-<script type="text/template" id="adminStaticDefaultTemplate">
-    <input id="adminStaticDefaultValue"
-           name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaultvalue"
-           type="text" value="" size="40" maxlength="100">
-</script>
-
-<script type="text/template" id="adminDynamicDefaultTemplate">
-    <select id="adminDynamicDefaultValue"
-            name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaultvalue"
-            class="psTextWidget dynamicDefaultValue">
-    </select>
 </script>
 
 <script type="text/template" id="adminRangeValidationTemplate">

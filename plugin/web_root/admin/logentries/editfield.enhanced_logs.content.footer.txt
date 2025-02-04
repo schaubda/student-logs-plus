@@ -5,6 +5,30 @@
 ~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
 
 <script>
+    const NUMERIC_OPERATORS =
+              {
+                  'greater':        'Greater than',
+                  'greaterorequal': 'Greater than or equal to',
+                  'less':           'Less than',
+                  'lessorequal':    'Less than or equal to',
+                  'equal':          'Equal to',
+                  'notequal':       'Not equal to',
+                  'between':        'Between',
+                  'notbetween':     'Not between'
+              };
+
+    const DATE_TIME_OPERATORS =
+              {
+                  'greater':        'After',
+                  'greaterorequal': 'On or after',
+                  'less':           'Before',
+                  'lessorequal':    'On or before',
+                  'equal':          'On',
+                  'notequal':       'Not on',
+                  'between':        'Between',
+                  'notbetween':     'Not between'
+              };
+
     function setHide(jQueryElement, hide)
     {
         if (hide)
@@ -84,11 +108,107 @@
         setDefaultFields(portal);
     }
 
+    function setValidationFields(portal)
+    {
+        let prefix = '#' + portal;
+        let validationType = $j(prefix + 'ValidationType').val();
+
+        switch (validationType)
+        {
+            case 'none':
+                setHide($j(prefix + 'ValidationSpan1'), true);
+                setHide($j(prefix + 'ValidationSpan2'), true);
+                break;
+
+            case 'numeric':
+                setHide($j(prefix + 'ValidationSpan1'), false);
+                setValidationValue2Visible(portal);
+                $j(prefix + 'ValidationValue1').removeClass()
+                $j(prefix + 'ValidationValue2').removeClass()
+                initBehaviors();
+                $j(prefix + 'ValidationValue1').addClass('psNumWidget');
+                $j(prefix + 'ValidationValue2').addClass('psNumWidget');
+                initBehaviors();
+                break;
+
+            case 'date':
+                setHide($j(prefix + 'ValidationSpan1'), false);
+                setValidationValue2Visible(portal);
+                $j(prefix + 'ValidationValue1').removeClass();
+                $j(prefix + 'ValidationValue2').removeClass();
+                initBehaviors();
+                $j(prefix + 'ValidationValue1').addClass('psDateWidget');
+                $j(prefix + 'ValidationValue2').addClass('psDateWidget');
+                initBehaviors();
+                break;
+
+            case 'time':
+                setHide($j(prefix + 'ValidationSpan1'), false);
+                setValidationValue2Visible(portal);
+                $j(prefix + 'ValidationValue1').removeClass();
+                $j(prefix + 'ValidationValue2').removeClass();
+                initBehaviors();
+                $j(prefix + 'ValidationValue1').addClass('timeEntry');
+                $j(prefix + 'ValidationValue2').addClass('timeEntry');
+                initBehaviors();
+                break;
+
+            case 'email':
+            case 'phone':
+            case 'regex':
+                setHide($j(prefix + 'ValidationSpan1'), false);
+                setValidationValue2Visible(portal);
+                $j(prefix + 'ValidationValue1').removeClass();
+                $j(prefix + 'ValidationValue2').removeClass();
+                initBehaviors();
+                break;
+        }
+    }
+
+    function validationTypeChange()
+    {
+        let validationType = $j(this);
+        let portal = validationType.data('portal');
+
+        setValidationFields(portal);
+    }
+
+    function setValidationValue2Visible(portal)
+    {
+        let prefix = '#' + portal;
+        let operator = $j(prefix + 'ValidationOperator').val();
+
+        if (operator === 'greater' ||
+            operator === 'greaterorequal' ||
+            operator === 'less' ||
+            operator === 'lessorequal' ||
+            operator === 'equal' ||
+            operator === 'notequal')
+        {
+            setHide($j(prefix + 'ValidationSpan2'), true);
+        }
+        else if (operator === 'between' ||
+                 operator === 'notbetween')
+        {
+            setHide($j(prefix + 'ValidationSpan2'), false);
+        }
+    }
+
+    function validationOperatorChange()
+    {
+        let operator = $j(this);
+        let portal = operator.data('portal');
+
+        setValidationValue2Visible(portal);
+    }
+
     function setupEventHandlers()
     {
         $j('.toggle').on('click', collapsibleClick);
         $j('.matchAdmin').on('change', matchAdminCheckboxChange);
         $j('.defaultType').on('change', defaultTypeChange);
+        $j('.validationType').on('change', validationTypeChange);
+        $j('.validationOperator').on('change', validationOperatorChange);
     }
 
     function addCustomPageContent()
@@ -124,6 +244,7 @@
 
         setDefaultFields('admin');
         setDefaultFields('teacher');
+        setValidationFields('admin');
     }
 
     (function ()
