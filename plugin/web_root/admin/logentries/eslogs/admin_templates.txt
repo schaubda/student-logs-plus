@@ -116,31 +116,37 @@
                         <br>
                         <input id="adminValidTextVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
-                               type="text" value="" size="10" maxlength="100">
+                               type="text" value="" size="10" maxlength="100" class="adminValidVal">
                         <input id="adminValidNumberVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval1"
-                               type="text" value="" size="5" class="psNumWidget">
+                               type="text" value="" size="5" class="psNumWidget adminValidVal">
                         <input id="adminValidDateVal1"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval1"
-                               type="text" value="" size="10" class="psDateWidget">
+                               type="text" value="" size="10" class="adminValidVal">
                         <input id="adminValidTimeVal1"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
-                               type="text" value="" size="10" class="timeEntry">
+                               type="text" value="" size="10"
+                               class="timeEntry adminValidVal validTimeVal">
+                        <input id="adminValidTimeStore1"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtimeval1"
+                               type="hidden" value="">
                     </span>
                     <span id="adminValidSpan2">
                         &nbsp;and&nbsp;
                         <input id="adminValidTextVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
-                               type="text" value="" size="10" maxlength="100">
+                               type="text" value="" size="10" maxlength="100" class="adminValidVal">
                         <input id="adminValidNumberVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval2"
-                               type="text" value="" size="5" class="psNumWidget">
+                               type="text" value="" size="5" class="psNumWidget adminValidVal">
                         <input id="adminValidDateVal2"
                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval2"
-                               type="text" value="" size="10" class="psDateWidget">
+                               type="text" value="" size="10" class="adminValidVal">
                         <input id="adminValidTimeVal2"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
-                               type="text" value="" size="10" class="timeEntry">
+                               type="text" value="" size="10"
+                               class="timeEntry adminValidVal validTimeVal">
+                        <input id="adminValidTimeStore2"
+                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtimeval2"
+                               type="hidden" value="">
                     </span>
                 </td>
             </tr>

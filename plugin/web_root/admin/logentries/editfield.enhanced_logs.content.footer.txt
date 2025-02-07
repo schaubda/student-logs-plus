@@ -4,6 +4,8 @@
 
 ~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
 
+<script type="text/javascript" src="/scripts/timeentry_widget.js"></script>
+
 <script>
     const NUMERIC_OPERATORS =
               {
@@ -29,26 +31,77 @@
                   'notbetween':     'Not between'
               };
 
-    function setHide(jQueryElement, hide)
+    function setVisible(jQueryElement, visible)
     {
-        if (hide)
-        {
-            if (!jQueryElement.hasClass('hide'))
-            {
-                jQueryElement.addClass('hide');
-            }
+        $j(jQueryElement)
+            .each(function ()
+                  {
+                      if (visible)
+                      {
+                          if ($j(this).hasClass('hide'))
+                          {
+                              $j(this).removeClass('hide');
+                          }
 
-            jQueryElement.prop('disabled', true);
+                          $j(this).prop('disabled', false);
+                      }
+                      else
+                      {
+                          if (!$j(this).hasClass('hide'))
+                          {
+                              $j(this).addClass('hide');
+                          }
+
+                          $j(this).prop('disabled', true);
+                      }
+                  });
+    }
+
+    function copyTimeValue(target, source)
+    {
+        if (target.attr('id').includes('Store'))
+        {
+            target.val(convertToSeconds(source.val()));
         }
         else
         {
-            if (jQueryElement.hasClass('hide'))
-            {
-                jQueryElement.removeClass('hide');
-            }
-
-            jQueryElement.prop('disabled', false);
+            target.val(convertTo12hrTime(source.val()));
         }
+    }
+
+    // Convert Seconds (integer) to Time (12 hr AM/PM) -- no seconds
+    // Adapted from Peter Nethercott's Log Entry Management Plugin
+    function convertTo12hrTime(seconds)
+    {
+        let hours = Math.floor(seconds / 3600);
+        let minutes = Math.floor((seconds - (hours * 3600)) / 60);
+        let meridiem = 'AM';
+
+        if (hours * 60 * 60 >= 43200)
+        {
+            meridiem = 'PM';
+
+            if (hours !== 12)
+            {
+                hours -= 12;
+            }
+        }
+
+        let strHours = hours < 10 ? `0${hours}` : `${hours}`;
+        let strMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+
+        return `${strHours}:${strMinutes} ${meridiem}`;
+    }
+
+    // Convert Time (12 hr AM/PM) to Seconds (integer)
+    // Adapted from Peter Nethercott's Log Entry Management Plugin
+    function convertToSeconds(time12Hrs)
+    {
+        let hrs = parseInt(time12Hrs.substring(0, 2), 10);
+        let min = parseInt(time12Hrs.substring(3, 5), 10);
+
+        return hrs * 3600 + min * 60 +
+               ((time12Hrs.substring(6) === "PM" && hrs !== 12) ? 43200 : 0);
     }
 
     function collapsibleClick()
@@ -69,11 +122,11 @@
     {
         if ($j(this).is(':checked'))
         {
-            setHide($j(this).parent().parent().nextAll(), true);
+            setVisible($j(this).parent().parent().nextAll(), false);
         }
         else
         {
-            setHide($j(this).parent().parent().nextAll(), false);
+            setVisible($j(this).parent().parent().nextAll(), true);
         }
     }
 
@@ -81,21 +134,21 @@
     {
         let prefix = '#' + portal;
 
-        switch ($j(prefix + 'DefaultType').val())
+        switch ($j(prefix + 'DefType').val())
         {
             case 'none':
-                setHide($j(prefix + 'DefStaticValue'), true);
-                setHide($j(prefix + 'DefDynamicValue'), true);
+                setVisible($j(prefix + 'DefStaticVal'), false);
+                setVisible($j(prefix + 'DefDynamicVal'), false);
                 break;
 
             case 'static':
-                setHide($j(prefix + 'DefStaticValue'), false);
-                setHide($j(prefix + 'DefDynamicValue'), true);
+                setVisible($j(prefix + 'DefStaticVal'), true);
+                setVisible($j(prefix + 'DefDynamicVal'), false);
                 break;
 
             case 'dynamic':
-                setHide($j(prefix + 'DefStaticValue'), true);
-                setHide($j(prefix + 'DefDynamicValue'), false);
+                setVisible($j(prefix + 'DefStaticVal'), false);
+                setVisible($j(prefix + 'DefDynamicVal'), true);
                 break;
         }
     }
@@ -108,69 +161,27 @@
         setDefaultFields(portal);
     }
 
-    function setValidationFields(portal)
+    function setValidationInputsType(portal, type)
     {
         let prefix = '#' + portal;
-        let validationType = $j(prefix + 'ValidType').val();
 
-        switch (validationType)
+        if (type === 'Date')
         {
-            case 'none':
-                setHide($j(prefix + 'ValidSpan1'), true);
-                setHide($j(prefix + 'ValidSpan2'), true);
-                break;
-
-            case 'numeric':
-                setHide($j(prefix + 'ValidSpan1'), false);
-                setValidationValue2Visible(portal);
-                $j(prefix + 'ValidValue1').removeClass()
-                $j(prefix + 'ValidValue2').removeClass()
-                initBehaviors();
-                $j(prefix + 'ValidValue1').addClass('psNumWidget');
-                $j(prefix + 'ValidValue2').addClass('psNumWidget');
-                initBehaviors();
-                break;
-
-            case 'date':
-                setHide($j(prefix + 'ValidSpan1'), false);
-                setValidationValue2Visible(portal);
-                $j(prefix + 'ValidValue1').removeClass();
-                $j(prefix + 'ValidValue2').removeClass();
-                initBehaviors();
-                $j(prefix + 'ValidValue1').addClass('psDateWidget');
-                $j(prefix + 'ValidValue2').addClass('psDateWidget');
-                initBehaviors();
-                break;
-
-            case 'time':
-                setHide($j(prefix + 'ValidSpan1'), false);
-                setValidationValue2Visible(portal);
-                $j(prefix + 'ValidValue1').removeClass();
-                $j(prefix + 'ValidValue2').removeClass();
-                initBehaviors();
-                $j(prefix + 'ValidValue1').addClass('timeEntry');
-                $j(prefix + 'ValidValue2').addClass('timeEntry');
-                initBehaviors();
-                break;
-
-            case 'email':
-            case 'phone':
-            case 'regex':
-                setHide($j(prefix + 'ValidSpan1'), false);
-                setValidationValue2Visible(portal);
-                $j(prefix + 'ValidValue1').removeClass();
-                $j(prefix + 'ValidValue2').removeClass();
-                initBehaviors();
-                break;
+            $j(prefix + 'ValidDateVal1').next().removeClass('hide');
+            $j(prefix + 'ValidDateVal2').next().removeClass('hide');
         }
-    }
+        else
+        {
+            $j(prefix + 'ValidDateVal1').next().addClass('hide');
+            $j(prefix + 'ValidDateVal2').next().addClass('hide');
+        }
 
-    function validationTypeChange()
-    {
-        let validationType = $j(this);
-        let portal = validationType.data('portal');
-
-        setValidationFields(portal);
+        if (type !== 'None')
+        {
+            setVisible($j('.adminValidVal'), false);
+            setVisible($j(prefix + 'Valid' + type + 'Val1'), true);
+            setVisible($j(prefix + 'Valid' + type + 'Val2'), true);
+        }
     }
 
     function setValidationValue2Visible(portal)
@@ -185,13 +196,60 @@
             operator === 'equal' ||
             operator === 'notequal')
         {
-            setHide($j(prefix + 'ValidSpan2'), true);
+            setVisible($j(prefix + 'ValidSpan2'), false);
         }
         else if (operator === 'between' ||
                  operator === 'notbetween')
         {
-            setHide($j(prefix + 'ValidSpan2'), false);
+            setVisible($j(prefix + 'ValidSpan2'), true);
         }
+    }
+
+    function setValidationFields(portal)
+    {
+        let prefix = '#' + portal;
+        let validationType = $j(prefix + 'ValidType').val();
+
+        if (validationType === 'none')
+        {
+            setVisible($j(prefix + 'ValidSpan1'), false);
+            setVisible($j(prefix + 'ValidSpan2'), false);
+            setValidationInputsType(portal, 'None');
+        }
+        else
+        {
+            setVisible($j(prefix + 'ValidSpan1'), true);
+            setValidationValue2Visible(portal);
+
+            switch (validationType)
+            {
+                case 'numeric':
+                    setValidationInputsType(portal, 'Number');
+                    break;
+
+                case 'date':
+                    setValidationInputsType(portal, 'Date');
+                    break;
+
+                case 'time':
+                    setValidationInputsType(portal, 'Time');
+                    break;
+
+                case 'email':
+                case 'phone':
+                case 'regex':
+                    setValidationInputsType(portal, 'Text');
+                    break;
+            }
+        }
+    }
+
+    function validationTypeChange()
+    {
+        let validationType = $j(this);
+        let portal = validationType.data('portal');
+
+        setValidationFields(portal);
     }
 
     function validationOperatorChange()
@@ -202,6 +260,14 @@
         setValidationValue2Visible(portal);
     }
 
+    function validationTimeValueChange()
+    {
+        let timeValue = $j(this);
+        let target = timeValue.parent().next();
+
+        copyTimeValue(target, timeValue);
+    }
+
     function setupEventHandlers()
     {
         $j('.toggle').on('click', collapsibleClick);
@@ -209,6 +275,7 @@
         $j('.defaultType').on('change', defaultTypeChange);
         $j('.validationType').on('change', validationTypeChange);
         $j('.validationOperator').on('change', validationOperatorChange);
+        $j('.validTimeVal').on('change', validationTimeValueChange);
     }
 
     function addCustomPageContent()
@@ -238,7 +305,7 @@
                           $j(this).removeClass('collapsed')
                                   .addClass('expanded');
                           $j(this).attr('aria-expanded', 'true');
-                          setHide($j(this).next(), false);
+                          setVisible($j(this).next(), true);
                       }
                   });
 
@@ -253,4 +320,19 @@
         setupFields();
         setupEventHandlers();
     })();
+
+    $j(function ()
+       {
+           $j('.validTimeVal')
+               .each(function ()
+                     {
+                         let timeValue = $j(this);
+                         let source = timeValue.parent().next();
+
+                         console.log('timeValue: ', timeValue);
+                         console.log('source: ', source);
+
+                         copyTimeValue(source, timeValue);
+                     });
+       });
 </script>
