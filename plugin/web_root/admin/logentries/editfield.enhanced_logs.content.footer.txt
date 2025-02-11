@@ -6,130 +6,24 @@
 <script type="text/javascript" src="/scripts/eslogs/utils.js"></script>
 
 <script>
-    function collapsibleClick()
+    (function ()
     {
-        let checkbox = $j(this).find('input[type="checkbox"]');
-        let checked = !$j(this).hasClass('expanded');
+        addCustomPageContent();
+        setupFields();
+        setupEventHandlers();
+    })();
 
-        checkbox.prop('checked', checked);
-    }
+    $j(function ()
+       {
+           $j('.validTimeVal')
+               .each(function ()
+                     {
+                         let timeValue = $j(this);
+                         let source = timeValue.parent().next();
 
-    function matchAdminCheckboxChange()
-    {
-        let visible = !$j(this).is(':checked');
-
-        setVisible($j(this).parent().parent().nextAll(), visible);
-    }
-
-    function setDefaultFields(portal)
-    {
-        let prefix = '#' + portal;
-        let staticVisible = $j(prefix + 'DefType').val() === 'static';
-        let dynamicVisible = $j(prefix + 'DefType').val() === 'dynamic';
-
-        setVisible($j(prefix + 'DefStaticVal'), staticVisible);
-        setVisible($j(prefix + 'DefDynamicVal'), dynamicVisible);
-    }
-
-    function defaultTypeChange()
-    {
-        let portal = $j(this).data('portal');
-
-        setDefaultFields(portal);
-    }
-
-    function setValidationInputsType(portal, type)
-    {
-        let prefix = '#' + portal;
-
-        if (type === 'Date')
-        {
-            $j(prefix + 'ValidDateVal1').next().removeClass('hide');
-            $j(prefix + 'ValidDateVal2').next().removeClass('hide');
-        }
-        else
-        {
-            $j(prefix + 'ValidDateVal1').next().addClass('hide');
-            $j(prefix + 'ValidDateVal2').next().addClass('hide');
-        }
-
-        if (type !== 'None')
-        {
-            setVisible($j('.adminValidVal'), false);
-            setVisible($j(prefix + 'Valid' + type + 'Val1'), true);
-            setVisible($j(prefix + 'Valid' + type + 'Val2'), true);
-        }
-    }
-
-    function setValidationValue2Visible(portal)
-    {
-        let prefix = '#' + portal;
-        let operator = $j(prefix + 'ValidOperator').val();
-        let visible = operator === 'between' || operator === 'notbetween';
-
-        setVisible($j(prefix + 'ValidSpan2'), visible);
-    }
-
-    function setValidationFields(portal)
-    {
-        let prefix = '#' + portal;
-        let validationType = $j(prefix + 'ValidType').val();
-        let inputTypes =
-                {
-                    'numeric': 'Number',
-                    'date':    'Date',
-                    'time':    'Time',
-                    'email':   'Text',
-                    'phone':   'Text',
-                    'regex':   'Text'
-                };
-
-        if (validationType === 'none')
-        {
-            setVisible($j(prefix + 'ValidSpan1'), false);
-            setVisible($j(prefix + 'ValidSpan2'), false);
-            setValidationInputsType(portal, 'None');
-        }
-        else
-        {
-            setVisible($j(prefix + 'ValidSpan1'), true);
-            setValidationValue2Visible(portal);
-
-            setValidationInputsType(portal, inputTypes[validationType]);
-        }
-    }
-
-    function validationTypeChange()
-    {
-        let portal = $j(this).data('portal');
-
-        setValidationFields(portal);
-    }
-
-    function validationOperatorChange()
-    {
-        let portal = $j(this).data('portal');
-
-        setValidationValue2Visible(portal);
-    }
-
-    function validationTimeValueChange()
-    {
-        let timeValue = $j(this);
-        let target = timeValue.parent().next();
-
-        copyTimeValue(target, timeValue);
-    }
-
-    function setupEventHandlers()
-    {
-        $j('.toggle').on('click', collapsibleClick);
-        $j('.matchAdmin').on('change', matchAdminCheckboxChange);
-        $j('.defaultType').on('change', defaultTypeChange);
-        $j('.validationType').on('change', validationTypeChange);
-        $j('.validationOperator').on('change', validationOperatorChange);
-        $j('.validTimeVal').on('change', validationTimeValueChange);
-    }
+                         copyTimeValue(source, timeValue);
+                     });
+       });
 
     function addCustomPageContent()
     {
@@ -167,22 +61,128 @@
         setValidationFields('admin');
     }
 
-    (function ()
+    function setDefaultFields(portal)
     {
-        addCustomPageContent();
-        setupFields();
-        setupEventHandlers();
-    })();
+        let prefix = '#' + portal;
+        let staticVisible = $j(prefix + 'DefType').val() === 'static';
+        let dynamicVisible = $j(prefix + 'DefType').val() === 'dynamic';
 
-    $j(function ()
-       {
-           $j('.validTimeVal')
-               .each(function ()
-                     {
-                         let timeValue = $j(this);
-                         let source = timeValue.parent().next();
+        setVisible($j(prefix + 'DefStaticVal'), staticVisible);
+        setVisible($j(prefix + 'DefDynamicVal'), dynamicVisible);
+    }
 
-                         copyTimeValue(source, timeValue);
-                     });
-       });
+    function setValidationFields(portal)
+    {
+        let prefix = '#' + portal;
+        let validationType = $j(prefix + 'ValidType').val();
+        let inputTypes =
+                {
+                    'numeric': 'Number',
+                    'date':    'Date',
+                    'time':    'Time',
+                    'email':   'Text',
+                    'phone':   'Text',
+                    'regex':   'Text'
+                };
+
+        if (validationType === 'none')
+        {
+            setVisible($j(prefix + 'ValidSpan1'), false);
+            setVisible($j(prefix + 'ValidSpan2'), false);
+            setValidationInputsType(portal, 'None');
+        }
+        else
+        {
+            setVisible($j(prefix + 'ValidSpan1'), true);
+            setValidationValue2Visible(portal);
+
+            setValidationInputsType(portal, inputTypes[validationType]);
+        }
+    }
+
+    function setValidationInputsType(portal, type)
+    {
+        let prefix = '#' + portal;
+
+        if (type === 'Date')
+        {
+            $j(prefix + 'ValidDateVal1').next().removeClass('hide');
+            $j(prefix + 'ValidDateVal2').next().removeClass('hide');
+        }
+        else
+        {
+            $j(prefix + 'ValidDateVal1').next().addClass('hide');
+            $j(prefix + 'ValidDateVal2').next().addClass('hide');
+        }
+
+        if (type !== 'None')
+        {
+            setVisible($j('.adminValidVal'), false);
+            setVisible($j(prefix + 'Valid' + type + 'Val1'), true);
+            setVisible($j(prefix + 'Valid' + type + 'Val2'), true);
+        }
+    }
+
+    function setValidationValue2Visible(portal)
+    {
+        let prefix = '#' + portal;
+        let operator = $j(prefix + 'ValidOperator').val();
+        let visible = operator === 'between' || operator === 'notbetween';
+
+        setVisible($j(prefix + 'ValidSpan2'), visible);
+    }
+
+    function setupEventHandlers()
+    {
+        $j('.toggle').on('click', collapsibleClick);
+        $j('.matchAdmin').on('change', matchAdminCheckboxChange);
+        $j('.defaultType').on('change', defaultTypeChange);
+        $j('.validationType').on('change', validationTypeChange);
+        $j('.validationOperator').on('change', validationOperatorChange);
+        $j('.validTimeVal').on('change', validationTimeValueChange);
+    }
+
+    function collapsibleClick()
+    {
+        let checkbox = $j(this).find('input[type="checkbox"]');
+        let checked = !$j(this).hasClass('expanded');
+
+        checkbox.prop('checked', checked);
+    }
+
+    function matchAdminCheckboxChange()
+    {
+        let visible = !$j(this).is(':checked');
+
+        setVisible($j(this).parent().parent().nextAll(), visible);
+    }
+
+    function defaultTypeChange()
+    {
+        let portal = $j(this).data('portal');
+
+        setDefaultFields(portal);
+    }
+
+    function validationTypeChange()
+    {
+        let portal = $j(this).data('portal');
+
+        setValidationFields(portal);
+    }
+
+    function validationOperatorChange()
+    {
+        let portal = $j(this).data('portal');
+
+        setValidationValue2Visible(portal);
+    }
+
+    function validationTimeValueChange()
+    {
+        let timeValue = $j(this);
+        let target = timeValue.parent().next();
+
+        copyTimeValue(target, timeValue);
+    }
 </script>
