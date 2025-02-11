@@ -1,3 +1,4 @@
+<!-- Begin Enhanced Student Logs fragment -->
 ~[x:insertfile;/admin/logentries/eslogs/admin_templates.txt]
 
 ~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
@@ -6,6 +7,7 @@
 <script type="text/javascript" src="/scripts/eslogs/utils.js"></script>
 
 <script>
+    // Code to execute immediately on page load
     (function ()
     {
         addCustomPageContent();
@@ -13,8 +15,11 @@
         setupEventHandlers();
     })();
 
+    // Code to execute after the DOM is fully loaded
     $j(function ()
        {
+           // Iterate through time value fields to copy the values from the hidden
+           // database-linked inputs to the visible text inputs
            $j('.validTimeVal')
                .each(function ()
                      {
@@ -25,28 +30,41 @@
                      });
        });
 
+    /**
+     * Function to add content from admin and teacher templates to the page.
+     */
     function addCustomPageContent()
     {
+        // Get HTML content for admin and teacher templates
         let adminContent = $j('#adminTemplate').html();
         let teacherContent = $j('#teacherTemplate').html();
+        // Target the page's main content table
         let target = $j('.box-round table');
 
+        // Wrap the target table with a div for admin options
         target.wrap('<div id="adminOptions" class="box-round"></div>');
 
         let adminOptions = $j('#adminOptions');
 
+        // Add a header to the admin options div and append admin and teacher content
         adminOptions.prepend('<h2>Admin Portal</h2>');
         adminOptions.append(adminContent);
         adminOptions.after(teacherContent);
     }
 
+    /**
+     * Function to set up fields based on their initial state as determined by their
+     * linked database values.
+     */
     function setupFields()
     {
+        // Iterate over elements with class 'toggle' to set their initial state
         $j('.toggle')
             .each(function ()
                   {
                       let checkbox = $j(this).find('input[type="checkbox"]');
 
+                      // Expand collapsed elements that have a checked checkbox
                       if (checkbox.is(':checked'))
                       {
                           $j(this).removeClass('collapsed')
@@ -56,21 +74,31 @@
                       }
                   });
 
+        // Set default and validation fields for admin and teacher portals
         setDefaultFields('admin');
         setDefaultFields('teacher');
         setValidationFields('admin');
     }
 
+    /**
+     * Function to set default fields based on the selected type.
+     * @param {string} portal - The portal type ('admin' or 'teacher').
+     */
     function setDefaultFields(portal)
     {
         let prefix = '#' + portal;
         let staticVisible = $j(prefix + 'DefType').val() === 'static';
         let dynamicVisible = $j(prefix + 'DefType').val() === 'dynamic';
 
+        // Show or hide static and dynamic value fields
         setVisible($j(prefix + 'DefStaticVal'), staticVisible);
         setVisible($j(prefix + 'DefDynamicVal'), dynamicVisible);
     }
 
+    /**
+     * Function to set validation fields based on the selected type.
+     * @param {string} portal - The portal type ('admin' or 'teacher').
+     */
     function setValidationFields(portal)
     {
         let prefix = '#' + portal;
@@ -85,6 +113,7 @@
                     'regex':   'Text'
                 };
 
+        // Show or hide validation fields based on the selected validation type
         if (validationType === 'none')
         {
             setVisible($j(prefix + 'ValidSpan1'), false);
@@ -96,14 +125,22 @@
             setVisible($j(prefix + 'ValidSpan1'), true);
             setValidationValue2Visible(portal);
 
+            // Set which validation parameter fields are visible based on the selected
+            // validation type
             setValidationInputsType(portal, inputTypes[validationType]);
         }
     }
 
+    /**
+     * Function to set the input types for validation fields.
+     * @param {string} portal - The portal type ('admin' or 'teacher').
+     * @param {string} type - The type of validation input ('Number', 'Date', 'Time', 'Text', 'None').
+     */
     function setValidationInputsType(portal, type)
     {
         let prefix = '#' + portal;
 
+        // Show or hide the date picker buttons based on the selected type
         if (type === 'Date')
         {
             $j(prefix + 'ValidDateVal1').next().removeClass('hide');
@@ -115,23 +152,35 @@
             $j(prefix + 'ValidDateVal2').next().addClass('hide');
         }
 
+        // Show the appropriate validation value fields based on the selected type
         if (type !== 'None')
         {
+            // Hide all validation value fields
             setVisible($j('.adminValidVal'), false);
+            // Show the appropriate validation value fields
             setVisible($j(prefix + 'Valid' + type + 'Val1'), true);
             setVisible($j(prefix + 'Valid' + type + 'Val2'), true);
         }
     }
 
+    /**
+     * Function to set the visibility of the second validation value field.
+     * @param {string} portal - The portal type ('admin' or 'teacher').
+     */
     function setValidationValue2Visible(portal)
     {
         let prefix = '#' + portal;
         let operator = $j(prefix + 'ValidOperator').val();
+        // Only show the second validation value field if the operator is set to a
+        // range-based operator
         let visible = operator === 'between' || operator === 'notbetween';
 
         setVisible($j(prefix + 'ValidSpan2'), visible);
     }
 
+    /**
+     * Function to set up event handlers for various elements.
+     */
     function setupEventHandlers()
     {
         $j('.toggle').on('click', collapsibleClick);
@@ -142,47 +191,72 @@
         $j('.validTimeVal').on('change', validationTimeValueChange);
     }
 
+    /**
+     * Event handler for collapsible elements.
+     */
     function collapsibleClick()
     {
+        // Sync the state of the checkbox with the state of the collapsible element
         let checkbox = $j(this).find('input[type="checkbox"]');
         let checked = !$j(this).hasClass('expanded');
 
         checkbox.prop('checked', checked);
     }
 
+    /**
+     * Event handler for match admin checkbox change.
+     */
     function matchAdminCheckboxChange()
     {
+        // Show or hide the following table rows based on the state of the checkbox
         let visible = !$j(this).is(':checked');
 
         setVisible($j(this).parent().parent().nextAll(), visible);
     }
 
+    /**
+     * Event handler for default type change.
+     */
     function defaultTypeChange()
     {
+        // Show the static or dynamic value fields based on the selected type
         let portal = $j(this).data('portal');
 
         setDefaultFields(portal);
     }
 
+    /**
+     * Event handler for validation type change.
+     */
     function validationTypeChange()
     {
+        // Show the appropriate validation value fields based on the selected type
         let portal = $j(this).data('portal');
 
         setValidationFields(portal);
     }
 
+    /**
+     * Event handler for validation operator change.
+     */
     function validationOperatorChange()
     {
+        // Show or hide the second validation value field based on the selected operator
         let portal = $j(this).data('portal');
 
         setValidationValue2Visible(portal);
     }
 
+    /**
+     * Event handler for validation time value change.
+     */
     function validationTimeValueChange()
     {
+        // Copy the value from the visible text input to the hidden database-linked input
         let timeValue = $j(this);
         let target = timeValue.parent().next();
 
         copyTimeValue(target, timeValue);
     }
 </script>
+<!-- End Enhanced Student Logs fragment -->
