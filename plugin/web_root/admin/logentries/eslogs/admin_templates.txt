@@ -9,6 +9,7 @@
         </span>
     </h3>
     <div id="adminDef" class="hide">
+        <a href="/admin/logentries/eslogs/test.html?frn=~(frn)" target="_blank">Test Page</a>
         <table id="adminDefOptions" border="0" cellpadding="0" cellspacing="0"
                class="linkDescList">
             <thead>

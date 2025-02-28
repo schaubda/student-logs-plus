@@ -11,7 +11,6 @@
     (function ()
     {
         addCustomPageContent();
-        setupFields();
         setupEventHandlers();
     })();
 
@@ -28,6 +27,8 @@
 
                          copyTimeValue(source, timeValue);
                      });
+
+           setupFields();
        });
 
     /**
@@ -150,6 +151,17 @@
         {
             $j(prefix + 'ValidDateVal1').next().addClass('hide');
             $j(prefix + 'ValidDateVal2').next().addClass('hide');
+        }
+
+        if (type === 'Time')
+        {
+            $j(prefix + 'ValidTimeStore1').prop('disabled', false);
+            $j(prefix + 'ValidTimeStore2').prop('disabled', false);
+        }
+        else
+        {
+            $j(prefix + 'ValidTimeStore1').prop('disabled', true);
+            $j(prefix + 'ValidTimeStore2').prop('disabled', true);
         }
 
         // Show the appropriate validation value fields based on the selected type
