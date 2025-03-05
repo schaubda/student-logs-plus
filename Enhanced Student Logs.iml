@@ -8,5 +8,7 @@
     <orderEntry type="library" name="PowerSchool Commonscripts" level="application" />
     <orderEntry type="library" name="PS Commonscripts" level="application" />
     <orderEntry type="library" name="@types/jquery" level="application" />
+    <orderEntry type="library" name="@types/angular" level="application" />
+    <orderEntry type="library" name="@types/requirejs" level="application" />
   </component>
 </module>
