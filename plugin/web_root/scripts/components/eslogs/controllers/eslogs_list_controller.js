@@ -11,7 +11,7 @@ define(function (require)
                {
                    // Controller code goes here
 
-                   $scope.loadLogEntries = (param) =>
+                   $scope.loadLogEntries = () =>
                    {
                        console.log('AngularJS initialized');
                    }

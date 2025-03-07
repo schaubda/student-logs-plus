@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permission_mappings>
+    <permission name="/admin/students/log.html">
+        <implies allow="post">/ws/schema/query/com.powerschool.eslogs.log_entries.list</implies>
+    </permission>
+    <permission name="/teachers/studentpages/log_entries.html">
+        <implies allow="post">/ws/schema/query/com.powerschool.eslogs.log_entries.list</implies>
+    </permission>
+</permission_mappings>
