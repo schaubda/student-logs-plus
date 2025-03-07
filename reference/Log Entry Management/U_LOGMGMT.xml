@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<psExtension xmlns="http://www.powerschool.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.powerschool.com psextension.xsd">
-    <extensionname>U_LOGMGMT</extensionname>
-    <extendedTable coreTable="LOG" dbTableName="U_LOGMGMT" comment="Custom table to track status and history of log entries.">
-        <field name="Admin_Changed" type="Boolean" defaultValue="0" comment="Has an administrator changed this log entry?"/>
-        <field name="Change_History" type="Clob" comment="Log entry history"/>
-        <field name="Discipline_IncidentTime" type="Integer" comment="Discipline Incident Time"/>
-    </extendedTable>
-</psExtension>
