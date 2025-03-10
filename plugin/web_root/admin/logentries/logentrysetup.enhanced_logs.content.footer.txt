@@ -1,0 +1,12 @@
+<script type="text/template" id="eslogs_template">
+    <td class="bold">Teacher Editable</td>
+    <td class="bold">Show in Admin Portal Entries List</td>
+    <td class="bold">Show in Teacher Portal Entries List</td>
+</script>
+
+<script>
+    (function ()
+    {
+        $j('form div.box-round table:first tr:first td:last').after($j('#eslogs_template').html());
+    })();
+</script>

@@ -79,3 +79,4 @@ fabric.properties
 
 /build/
 /node_modules/
+/reference/
