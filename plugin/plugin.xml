@@ -3,7 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         description="Enhances student log entry and management for both teachers and admins"
         name="Enhanced Student Logs"
-        version="25.3.0.31"
+        version="25.3.0.36"
         xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
     <publisher name="Dave Schaub">
         <contact email="schaubda@tcaps.net"/>

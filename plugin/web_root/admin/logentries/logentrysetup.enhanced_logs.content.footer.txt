@@ -1,12 +1,47 @@
+<style>
+    .slp_checkbox_cell
+    {
+        text-align: center;
+    }
+</style>
+
 <script type="text/template" id="eslogs_template">
-    <td class="bold">Teacher Editable</td>
     <td class="bold">Show in Admin Portal Entries List</td>
     <td class="bold">Show in Teacher Portal Entries List</td>
+    <td class="bold">Show on Teacher Portal Entry Form</td>
 </script>
 
 <script>
     (function ()
     {
-        $j('form div.box-round table:first tr:first td:last').after($j('#eslogs_template').html());
+        let targetTable = $j('form div.box-round table:first');
+
+        targetTable.find('tr:first td:last').after($j('#eslogs_template').html());
+
+        targetTable.find('tr')
+                   .each(function ()
+                         {
+                             if ($j(this).index() === 0)
+                             {
+                                 return;
+                             }
+
+                             let link = $j(this).find('a').attr('href');
+                             let frn = link.match(/(?<=006).*/);
+                             let targetCell = $j(this).find('td:last');
+
+                             let content = `
+<td class="slp_checkbox_cell">
+    <input type="checkbox" class="admin_list" name="admin_list_${frn}" data-frn="${frn}">
+</td>
+<td class="slp_checkbox_cell">
+    <input type="checkbox" class="teacher_list" name="teacher_list_${frn}" data-frn="${frn}">
+</td>
+<td class="slp_checkbox_cell">
+    <input type="checkbox" class="teacher_entry" name="teacher_entry_${frn}" data-frn="${frn}">
+</td>`;
+
+                             targetCell.after(content);
+                         });
     })();
 </script>
