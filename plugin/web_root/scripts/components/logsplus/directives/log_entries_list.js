@@ -1,14 +1,14 @@
 'use strict';
 define(function (require)
        {
-           var module = require('components/eslogs/module');
+           var module = require('components/logsplus/module');
 
-           module.directive('esLogsEntriesList', [
+           module.directive('logsPlusEntriesList', [
                function ()
                {
                    return {
                        restrict:    'E',
-                       templateUrl: 'components/eslogs/views/log_entries_list.html'
+                       templateUrl: 'components/logsplus/views/log_entries_list.html'
                    };
                }
            ]);

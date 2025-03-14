@@ -4,7 +4,7 @@
         <span>
             <label>Show on Teacher Portal</label>
             <input id="teacherShowOnPortal"
-                   name="[Gen.U_ESLOGS_TEACHER_FIELDS]showonportal"
+                   name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]showonportal"
                    type="checkbox" value="">
         </span>
     </h2>
@@ -22,7 +22,7 @@
                 <td class="bold">Match Admin Portal Formatting</td>
                 <td>
                     <input id="teacherMatchAdminFormatting"
-                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadminformatting"
+                           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]matchadminformatting"
                            type="checkbox" value="" class="radioSlider matchAdmin">
                 </td>
             </tr>
@@ -30,7 +30,7 @@
                 <td class="bold">Field Label</td>
                 <td>
                     <input id="teacherFieldLabel"
-                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]inputlabel"
+                           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]inputlabel"
                            type="text" value="" size="40">
                 </td>
             </tr>
@@ -38,7 +38,7 @@
                 <td class="bold">Input Type</td>
                 <td>
                     <select id="teacherInputType"
-                            name="[Gen.U_ESLOGS_TEACHER_FIELDS]inputtype"
+                            name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]inputtype"
                             class="psTextWidget">
                         <option value="text">Entry field</option>
                         <option value="static">Static field</option>
@@ -53,7 +53,7 @@
                 <td class="bold">Width<br>(applies only to 'entry field' and 'entry box' types)</td>
                 <td>
                     <input id="teacherInputWidth"
-                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]width"
+                           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]width"
                            type="text" value="" size="2"
                            data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli&quot;}"
                            class="psNumWidget" data-minvalue="-9223372036854775808"
@@ -65,7 +65,7 @@
                 <td class="bold">Height<br>(applies only to 'entry box' type)</td>
                 <td>
                     <input id="teacherInputHeight"
-                           name="[Gen.U_ESLOGS_TEACHER_FIELDS]height"
+                           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]height"
                            type="text" value="" size="2"
                            data-validation="{&quot;minValue&quot;:&quot;-9223372036854775808&quot;,&quot;maxValue&quot;:&quot;9223372036854775807&quot;,&quot;isinteger&quot;:&quot;true&quot;,&quot;type&quot;:&quot;number&quot;,&quot;key&quot;:&quot;gen.valueli2&quot;}"
                            class="psNumWidget" data-minvalue="-9223372036854775808"
@@ -78,7 +78,7 @@
                 </td>
                 <td>
                 <textarea id="teacherListEntries"
-                          name="[Gen.U_ESLOGS_TEACHER_FIELDS]data"
+                          name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]data"
                           rows="11" cols="40"></textarea>
                 </td>
             </tr>
@@ -89,7 +89,7 @@
             <span>
                 <label>Enable</label>
                 <input id="teacherDefEnable"
-                       name="[Gen.U_ESLOGS_TEACHER_FIELDS]enabledefault"
+                       name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]enabledefault"
                        type="checkbox" value="">
             </span>
         </h3>
@@ -107,7 +107,7 @@
                     <td class="bold">Match Admin Portal Default Value Settings</td>
                     <td>
                         <input id="teacherDefMatchAdmin"
-                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadmindefault"
+                               name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]matchadmindefault"
                                type="checkbox" value="" class="radioSlider matchAdmin">
                     </td>
                 </tr>
@@ -115,7 +115,7 @@
                     <td class="bold">Default Value Type</td>
                     <td>
                         <select id="teacherDefType"
-                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaulttype"
+                                name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]defaulttype"
                                 class="psTextWidget defaultType"
                                 data-portal="teacher">
                             <option value="none">No default</option>
@@ -128,10 +128,10 @@
                     <td class="bold">Default Value</td>
                     <td>
                         <input id="teacherDefStaticVal"
-                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+                               name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]defaultvalue"
                                type="text" value="" size="40" maxlength="100">
                         <select id="teacherDefDynamicVal"
-                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+                                name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]defaultvalue"
                                 class="psTextWidget defaultDynamicVal">
                             <option value="placeholder1">Placeholder 1</option>
                             <option value="placeholder2">Placeholder 2</option>
@@ -149,7 +149,7 @@
             <span>
                 <label>Enable</label>
                 <input id="teacherValidEnable"
-                       name="[Gen.U_ESLOGS_TEACHER_FIELDS]enablevalidation"
+                       name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]enablevalidation"
                        type="checkbox" value="">
             </span>
         </h3>
@@ -167,7 +167,7 @@
                     <td class="bold">Match Admin Portal Validation Settings</td>
                     <td>
                         <input id="teacherValidMatchAdmin"
-                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]matchadminvalidation"
+                               name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]matchadminvalidation"
                                type="checkbox" value="" class="radioSlider matchAdmin">
                     </td>
                 </tr>
@@ -175,7 +175,7 @@
                     <td class="bold">Required Field</td>
                     <td>
                         <input id="teacherValidRequired"
-                               name="[Gen.U_ESLOGS_TEACHER_FIELDS]requiredfield"
+                               name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]requiredfield"
                                type="checkbox" value="" class="radioSlider">
                     </td>
                 </tr>
@@ -183,7 +183,7 @@
                     <td class="bold">Validation Type</td>
                     <td>
                         <select id="teacherValidType"
-                                name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationtype"
+                                name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]validationtype"
                                 class="psTextWidget validationType">
                             <option value="none">No validation</option>
                             <option value="numeric">Numeric</option>
@@ -208,13 +208,13 @@
 
 <script type="text/template" id="teacherStaticDefTemplate">
     <input id="teacherStaticDefVal"
-           name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]defaultvalue"
            type="text" value="" size="40" maxlength="100">
 </script>
 
 <script type="text/template" id="teacherDynamicDefTemplate">
     <select id="teacherDynamicDefVal"
-            name="[Gen.U_ESLOGS_TEACHER_FIELDS]defaultvalue"
+            name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]defaultvalue"
             class="psTextWidget dynamicDefVal">
     </select>
 </script>
@@ -222,11 +222,11 @@
 <script type="text/template" id="teacherRangeValidTemplate">
     Entered data is&nbsp;
     <select id="teacherValidOperator"
-            name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationoperator"
+            name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]validationoperator"
             class="psTextWidget">
     </select>&nbsp;
     <input id="teacherValidVal1"
-           name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationvalue1"
+           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]validationvalue1"
            type="text" value="" size="10" maxlength="100">
     <span id="teacherValidVal2InsertionPoint"></span>
 </script>
@@ -234,6 +234,6 @@
 <script type="text/template" id="teacherRangeValidVal2Template">
     &nbsp;and&nbsp;
     <input id="teacherValidVal2"
-           name="[Gen.U_ESLOGS_TEACHER_FIELDS]validationvalue2"
+           name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]validationvalue2"
            type="text" value="" size="10" maxlength="100">
 </script>

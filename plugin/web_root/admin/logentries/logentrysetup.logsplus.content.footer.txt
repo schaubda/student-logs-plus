@@ -5,7 +5,7 @@
     }
 </style>
 
-<script type="text/template" id="eslogs_template">
+<script type="text/template" id="logsplus_template">
     <td class="bold">Show in Admin Portal Entries List</td>
     <td class="bold">Show in Teacher Portal Entries List</td>
     <td class="bold">Show on Teacher Portal Entry Form</td>
@@ -16,7 +16,7 @@
     {
         let targetTable = $j('form div.box-round table:first');
 
-        targetTable.find('tr:first td:last').after($j('#eslogs_template').html());
+        targetTable.find('tr:first td:last').after($j('#logsplus_template').html());
 
         targetTable.find('tr')
                    .each(function ()

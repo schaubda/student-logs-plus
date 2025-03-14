@@ -4,12 +4,12 @@
         <span>
             <label>Enable</label>
             <input id="adminDefEnable"
-                   name="[Gen.U_ESLOGS_ADMIN_FIELDS]enabledefault"
+                   name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]enabledefault"
                    type="checkbox" value="">
         </span>
     </h3>
     <div id="adminDef" class="hide">
-        <a href="/admin/logentries/eslogs/test.html?frn=~(frn)" target="_blank">Test Page</a>
+        <a href="/admin/logentries/logsplus/test.html?frn=~(frn)" target="_blank">Test Page</a>
         <table id="adminDefOptions" border="0" cellpadding="0" cellspacing="0"
                class="linkDescList">
             <thead>
@@ -23,7 +23,7 @@
                 <td class="bold">Default Value Type</td>
                 <td>
                     <select id="adminDefType"
-                            name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaulttype"
+                            name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]defaulttype"
                             class="psTextWidget defaultType"
                             data-portal="admin">
                         <option value="none">No default</option>
@@ -36,10 +36,10 @@
                 <td class="bold">Default Value</td>
                 <td>
                     <input id="adminDefStaticVal"
-                           name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaultvalue"
+                           name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]defaultvalue"
                            type="text" value="" size="40" maxlength="100">
                     <select id="adminDefDynamicVal"
-                            name="[Gen.U_ESLOGS_ADMIN_FIELDS]defaultvalue"
+                            name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]defaultvalue"
                             class="psTextWidget defaultDynamicVal">
                         <option value="placeholder1">Placeholder 1</option>
                         <option value="placeholder2">Placeholder 2</option>
@@ -57,7 +57,7 @@
         <span>
             <label>Enable</label>
             <input id="adminValidEnable"
-                   name="[Gen.U_ESLOGS_ADMIN_FIELDS]enablevalidation"
+                   name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]enablevalidation"
                    type="checkbox" value="">
         </span>
     </h3>
@@ -75,7 +75,7 @@
                 <td class="bold">Required Field</td>
                 <td>
                     <input id="adminValidRequired"
-                           name="[Gen.U_ESLOGS_ADMIN_FIELDS]requiredfield"
+                           name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]requiredfield"
                            type="checkbox" value="" class="radioSlider">
                 </td>
             </tr>
@@ -83,7 +83,7 @@
                 <td class="bold">Validation Type</td>
                 <td>
                     <select id="adminValidType"
-                            name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtype"
+                            name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationtype"
                             class="psTextWidget validationType"
                             data-portal="admin">
                         <option value="none">No validation</option>
@@ -102,7 +102,7 @@
                     <span id="adminValidSpan1">
                         <span id="adminValidParamLabel">Entered data is&nbsp;</span>&nbsp;
                         <select id="adminValidOperator"
-                                name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationoperator"
+                                name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationoperator"
                                 class="psTextWidget validationOperator"
                                 data-portal="admin">
                             <option value="greater">Greater than</option>
@@ -116,37 +116,37 @@
                         </select>
                         <br>
                         <input id="adminValidTextVal1"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval1"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationtextval1"
                                type="text" value="" size="10" maxlength="100" class="adminValidVal">
                         <input id="adminValidNumberVal1"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval1"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationnumval1"
                                type="text" value="" size="5" class="psNumWidget adminValidVal">
                         <input id="adminValidDateVal1"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval1"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationdateval1"
                                type="text" value="" size="10" class="adminValidVal">
                         <input id="adminValidTimeVal1"
                                type="text" value="" size="10"
                                class="timeEntry adminValidVal validTimeVal">
                         <input id="adminValidTimeStore1"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtimeval1"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationtimeval1"
                                type="hidden" value="">
                     </span>
                     <span id="adminValidSpan2">
                         &nbsp;and&nbsp;
                         <input id="adminValidTextVal2"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtextval2"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationtextval2"
                                type="text" value="" size="10" maxlength="100" class="adminValidVal">
                         <input id="adminValidNumberVal2"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationnumval2"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationnumval2"
                                type="text" value="" size="5" class="psNumWidget adminValidVal">
                         <input id="adminValidDateVal2"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationdateval2"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationdateval2"
                                type="text" value="" size="10" class="adminValidVal">
                         <input id="adminValidTimeVal2"
                                type="text" value="" size="10"
                                class="timeEntry adminValidVal validTimeVal">
                         <input id="adminValidTimeStore2"
-                               name="[Gen.U_ESLOGS_ADMIN_FIELDS]validationtimeval2"
+                               name="[Gen.U_LOGSPLUS_ADMIN_FIELDS]validationtimeval2"
                                type="hidden" value="">
                     </span>
                 </td>

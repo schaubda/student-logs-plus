@@ -2,8 +2,8 @@
 <plugin xmlns="http://plugin.powerschool.pearson.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         description="Enhances student log entry and management for both teachers and admins"
-        name="Enhanced Student Logs"
-        version="25.3.0.36"
+        name="Student Logs Plus"
+        version="25.3.0.37"
         xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
     <publisher name="Dave Schaub">
         <contact email="schaubda@tcaps.net"/>

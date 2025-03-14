@@ -2,7 +2,7 @@
   <artifact name="Plugin">
     <output-path>$PROJECT_DIR$/build</output-path>
     <root id="root">
-      <element id="archive" name="enhanced-student-logs.zip">
+      <element id="archive" name="student-logs-plus.zip">
         <element id="dir-copy" path="$PROJECT_DIR$/plugin" />
       </element>
     </root>

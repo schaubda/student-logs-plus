@@ -3,9 +3,9 @@
 'use strict';
 define(function (require)
        {
-           var module = require('components/eslogs/module');
+           var module = require('components/logsplus/module');
 
-           module.controller('esLogsListCtrl', [
+           module.controller('logsPlusListCtrl', [
                '$scope',
                function ($scope)
                {

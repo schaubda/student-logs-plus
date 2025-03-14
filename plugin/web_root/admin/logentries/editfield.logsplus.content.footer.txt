@@ -1,10 +1,10 @@
 <!-- Begin Enhanced Student Logs fragment -->
-~[x:insertfile;/admin/logentries/eslogs/admin_templates.txt]
+~[x:insertfile;/admin/logentries/logsplus/admin_templates.txt]
 
-~[x:insertfile;/admin/logentries/eslogs/teacher_templates.txt]
+~[x:insertfile;/admin/logentries/logsplus/teacher_templates.txt]
 
 <script type="text/javascript" src="/scripts/timeentry_widget.js"></script>
-<script type="text/javascript" src="/scripts/eslogs/utils.js"></script>
+<script type="text/javascript" src="/scripts/logsplus/utils.js"></script>
 
 <script>
     // Code to execute immediately on page load
