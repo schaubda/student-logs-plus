@@ -4,7 +4,7 @@
         <span>
             <label>Show on Teacher Portal</label>
             <input id="teacherShowOnPortal"
-                   name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]showonportal"
+                   name="[Gen.U_LOGSPLUS_TEACHER_FIELDS]showonentryform"
                    type="checkbox" value="">
         </span>
     </h2>
